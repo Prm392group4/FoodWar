@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".food_management.Restaurant">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbarRestaurant"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/teal_200"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:title="Restaurant" >
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:translationX="180dp"
+            tools:layout_editor_absoluteX="126dp"
+            tools:layout_editor_absoluteY="3dp">
+
+            <ImageView
+                android:id="@+id/imageView_feedBack"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                app:srcCompat="@drawable/feedback_icon" />
+        </FrameLayout>
+    </androidx.appcompat.widget.Toolbar>
+
+    <ImageView
+        android:id="@+id/img_restaurant"
+        android:layout_width="match_parent"
+        android:layout_height="280dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarRestaurant"
+        app:srcCompat="@drawable/restaurant" />
+
+    <TextView
+        android:id="@+id/textview_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:paddingLeft="10dp"
+        android:text="Thanh Xuân, Hà Nội"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_restaurant" />
+
+    <ListView
+        android:background="@drawable/border"
+        android:id="@+id/listView_food"
+        android:layout_width="411dp"
+        android:layout_height="400dp"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textview_address" />
+</androidx.constraintlayout.widget.ConstraintLayout>
