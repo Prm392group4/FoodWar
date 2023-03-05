@@ -168,6 +168,7 @@
                                 android:orientation="vertical">
 
                                 <Button
+                                    android:id="@+id/button_food_detail"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
                                     android:background="@drawable/food_and_restaurant_svg">

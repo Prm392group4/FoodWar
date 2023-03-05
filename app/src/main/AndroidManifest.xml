@@ -53,6 +53,9 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+        <activity android:name=".food_management.DetailFood"></activity>
+        <activity android:name=".food_management.Restaurant"></activity>
+        <activity android:name=".food_management.FeedBack"></activity>
     </application>
 
 </manifest>

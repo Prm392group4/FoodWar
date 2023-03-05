@@ -6,50 +6,14 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <RelativeLayout
-        android:id="@+id/relativeLayout"
-        android:layout_width="match_parent"
-        android:layout_height="675sp"
-        android:background="@drawable/wave1"
+    <TextView
+        android:id="@+id/main"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello World!"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <RelativeLayout
-            android:layout_width="300dp"
-            android:layout_height="300dp"
-            android:layout_marginLeft="52dp"
-            android:layout_marginTop="50dp">
-            <ImageView
-                android:id="@+id/imageView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/food_and_restaurant_svg" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/go_button"
-            android:layout_width="300dp"
-            android:layout_height="50dp"
-            android:layout_marginLeft="52dp"
-            android:layout_marginTop="550dp"
-            android:background="@drawable/button_start">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:gravity="center_horizontal"
-                android:text="GO"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="34dp"
-                android:textStyle="bold">
-
-            </TextView>
-
-        </RelativeLayout>
-
-    </RelativeLayout>
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
