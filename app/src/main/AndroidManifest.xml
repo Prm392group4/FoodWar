@@ -13,6 +13,13 @@
         android:theme="@style/Theme.FoodWar"
         tools:targetApi="31">
         <activity
+            android:name=".user_management.ForgetPassword"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".user_management.AdminActivity"
             android:exported="false">
             <meta-data

@@ -2,6 +2,7 @@ package com.example.foodwar.user_management;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,6 +21,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -65,6 +67,15 @@ public class LoginTabFragment extends Fragment {
         swipe.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(700).start();
         login_button.animate().translationX(0).alpha(1).setDuration(800).setStartDelay(700).start();
 
+        // Set click listener to start ForgetPasswordActivity
+        forgetPass.setOnClickListener(new View.OnClickListener() { // add click listener to forgetPass TextView
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), ForgetPassword.class); // start ForgetPasswordActivity
+                startActivity(intent);
+            }
+        });
+
 
         mAuth = FirebaseAuth.getInstance(); // Initialize FirebaseAuth instance
 
@@ -75,20 +86,28 @@ public class LoginTabFragment extends Fragment {
                 String stremail = email.getText().toString().trim();
                 String strpassword = pass.getText().toString().trim();
 
+                if (TextUtils.isEmpty(stremail)) {
+                    email.setError("Email is required");
+                    return;
+                }
+
+                if (TextUtils.isEmpty(strpassword)) {
+                    pass.setError("Password is required");
+                    return;
+                }
+
                 mAuth.signInWithEmailAndPassword(stremail, strpassword)
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
-                                    // Login successful
-                                    String userId = mAuth.getCurrentUser().getUid();
-                                    DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("users").child(userId);
-
-                                    userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    FirebaseUser user = mAuth.getCurrentUser();
+                                    String uid = user.getUid();
+                                    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("users").child(uid);
+                                    databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
                                         @Override
-                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                            String role = snapshot.child("role").getValue(String.class);
-
+                                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                            String role = dataSnapshot.child("role").getValue(String.class);
                                             if (role.equals("user")) {
                                                 Intent intent = new Intent(getActivity(), MainActivity.class);
                                                 startActivity(intent);
@@ -101,12 +120,11 @@ public class LoginTabFragment extends Fragment {
                                         }
 
                                         @Override
-                                        public void onCancelled(@NonNull DatabaseError error) {
-                                            // Handle database error
+                                        public void onCancelled(@NonNull DatabaseError databaseError) {
+                                            Log.e("LoginTabFragment", "Error getting role from database");
                                         }
                                     });
                                 } else {
-                                    // Login failed
                                     String errorMessage = task.getException().getMessage();
                                     Log.e("LoginTabFragment", "Login failed: " + errorMessage);
                                     Toast.makeText(getActivity(), "Login failed: " + errorMessage, Toast.LENGTH_SHORT).show();
@@ -115,7 +133,6 @@ public class LoginTabFragment extends Fragment {
                         });
             }
         });
-
 
 
 
