@@ -2,6 +2,7 @@ package com.example.foodwar.user_management;
 
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -36,12 +37,12 @@ public class IntroActivity extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
+//block this code for represent purpose
         // when this activity is about to be launch we need to check if its openened before or not
 //        if (restorePrefData()) {
 //
-//            Intent mainActivity = new Intent(getApplicationContext(), MainActivity.class );
-//            startActivity(mainActivity);
+//            Intent loginActivity = new Intent(getApplicationContext(), LoginActivity.class );
+//            startActivity(loginActivity);
 //            finish();
 //        }
 
@@ -119,9 +120,7 @@ public class IntroActivity extends AppCompatActivity {
                 //open main activity
                 Intent loginActivity = new Intent(getApplicationContext(),LoginActivity.class);
                 startActivity(loginActivity);
-                // also we need to save a boolean value to storage so next time when the user run the app
-                // we could know that he is already checked the intro screen activity
-                // i'm going to use shared preferences to that process
+             //hold data of user open the app for the first time
 //                savePrefsData();
                 finish();
             }
@@ -139,7 +138,7 @@ public class IntroActivity extends AppCompatActivity {
 
 
     }
-
+//block this code for represent purpose
 //    private boolean restorePrefData() {
 //        SharedPreferences pref = getApplicationContext().getSharedPreferences("myPrefs",MODE_PRIVATE);
 //        Boolean isIntroActivityOpnendBefore = pref.getBoolean("isIntroOpnend",false);
