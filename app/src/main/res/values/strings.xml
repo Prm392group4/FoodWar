@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">FoodWar</string>
+    <string name="facebook_app_id">1481813592223546</string>
+    <string name="fb_login_protocol_scheme">fb1234</string>
+    <string name="facebook_client_token">edb010f128bffe4a07d1366d5b30cd92</string>
 </resources>
