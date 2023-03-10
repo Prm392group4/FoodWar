@@ -1,5 +1,6 @@
 package com.example.foodwar.user_management;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -109,7 +110,8 @@ public class SignUpTabFragment extends Fragment {
             public void onClick(View v) {
                 String stremail = email.getText().toString().trim();
                 String strpassword = pass.getText().toString().trim();
-
+                // show a loading dialog while signing in
+                ProgressDialog dialog = ProgressDialog.show(getActivity(), "", "Signing up. Please wait...", true);
                 mAuth.createUserWithEmailAndPassword(stremail, strpassword)
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
