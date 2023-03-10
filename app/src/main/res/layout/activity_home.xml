@@ -47,6 +47,7 @@
             app:layout_constraintTop_toTopOf="parent" />
     </LinearLayout>
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout2"
         android:layout_width="0dp"
@@ -71,6 +72,7 @@
 
                 <Button
                     android:layout_width="50dp"
+                    android:id="@+id/btncup"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
@@ -119,6 +121,16 @@
             </LinearLayout>
         </ScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_add_blogs"
+        android:backgroundTint="@color/white"
+        android:src="@drawable/ic_add"
+        app:layout_anchor="@id/bottomAppBar"
+        app:maxImageSize="40dp"
+        app:tint ="@color/main"
+        tools:ignore="MissingConstraints,NotSibling" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout4"
@@ -199,6 +211,7 @@
 
                                 </Button>
 
+
                             </LinearLayout>
                         </androidx.cardview.widget.CardView>
 
@@ -296,6 +309,7 @@
 
                                 </Button>
 
+
                             </LinearLayout>
                         </androidx.cardview.widget.CardView>
                     </GridLayout>
@@ -350,6 +364,7 @@
                 android:background="@drawable/ic_account_circle">
 
             </Button>
+
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 

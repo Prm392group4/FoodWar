@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -34,7 +37,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        <!-- Facebook Login Activity -->
         <activity
             android:name=".user_management.spashScreen"
             android:exported="true">
@@ -62,6 +64,18 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+        <activity android:name=".blogs_management.MainActivityBlogs"></activity>
+        <activity android:name=".blogs_management.DetailActivityBlogs"></activity>
+        <activity android:name=".user_management.ProfileActivity"></activity>
+        <activity android:name="com.example.foodwar.user_management.EditProfileActivity" />
+        <activity android:name=".menu.MainMenu"></activity>
+        <activity android:name=".menu.SettingsFragment"></activity>
+        <activity android:name=".menu.HomeFragment"></activity>
+        <activity android:name=".menu.ShareFragment"></activity>
+        <activity android:name=".menu.AboutFragment"></activity>
+        <activity android:name=".blogs_management.MainupBlogsItems"></activity>
+        <activity android:name=".menu.getAccountMenu"></activity>
+
         <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
         <meta-data android:name="com.facebook.sdk.ClientToken" android:value="@string/facebook_client_token"/>
         <activity android:name="com.facebook.FacebookActivity"

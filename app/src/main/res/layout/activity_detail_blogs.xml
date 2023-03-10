@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/bg_main"
+    tools:context=".blogs_management.DetailActivityBlogs">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/detailTitle"
+        android:layout_marginTop="24dp"
+        android:padding="5dp"
+        android:text="Title"
+        android:background="@drawable/main_border"
+        android:textSize="18sp"
+        android:layout_gravity="center"
+        android:textColor="@color/main"
+        android:layout_marginBottom="12dp"/>
+
+    <ImageView
+        android:layout_width="400dp"
+        android:layout_height="200dp"
+        android:id="@+id/detailImage"
+        android:padding="8dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="40dp"
+        android:background="@drawable/main_border"
+        android:layout_gravity="center"
+        android:src="@drawable/bg"
+        android:scaleType="centerCrop"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Description"
+        android:background="@drawable/main_border"
+        android:padding="20dp"
+        android:layout_gravity="center"
+        android:textColor="@color/main"
+        android:textSize="18sp"
+        android:id="@+id/detailDesc"/>
+
+    <TextView
+        android:id="@+id/publisher"
+        android:layout_width="150dp"
+        android:layout_height="25dp"
+        android:layout_marginLeft="100dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/main_border"
+        android:padding="5dp"
+        android:textAlignment="center"
+        android:text="Pulisher"
+        android:textColor="@color/main"
+        android:textSize="10sp" />
+
+
+</LinearLayout>
