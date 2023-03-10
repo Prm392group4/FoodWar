@@ -1,5 +1,6 @@
 package com.example.foodwar.user_management;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -95,6 +96,9 @@ public class LoginTabFragment extends Fragment {
                     pass.setError("Password is required");
                     return;
                 }
+
+                // show a loading dialog while signing in
+                ProgressDialog dialog = ProgressDialog.show(getActivity(), "", "Signing in. Please wait...", true);
 
                 mAuth.signInWithEmailAndPassword(stremail, strpassword)
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
