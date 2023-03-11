@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="@drawable/bg_main"
+    android:paddingTop="16dp"
+    android:paddingLeft="16dp"
+    tools:context=".home_management.HomeActivity"
+    android:paddingRight="16dp">
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_add_blogs_float"
+        android:backgroundTint="@color/white"
+        android:src="@drawable/ic_add"
+        app:layout_anchor="@id/bottomAppBar"
+        app:maxImageSize="40dp"
+        app:tint ="@color/main"
+        tools:ignore="MissingConstraints,NotSibling" />
+    <!-- Search bar -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="1dp"
+        android:gravity="center_vertical">
+        <TextView
+            android:id="@+id/home_searchTextView"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:background="@drawable/main_border"
+            android:hint="Search...."
+            android:layout_marginRight="2dp"
+            android:padding="12dp"/>
+        <Button
+            android:id="@+id/home_btn_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/main_border"
+            android:text="location"
+            android:textSize="12dp"
+            >
+
+        </Button>
+    </LinearLayout>
+
+    <!-- image slide show -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp">
+        <com.denzcoskun.imageslider.ImageSlider
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            app:iss_period="1000"
+            app:iss_auto_cycle="true"
+            app:iss_delay="1000"
+            app:iss_title_background="@drawable/home_item_foods_border"
+            android:id="@+id/home_imgslideshow">
+
+        </com.denzcoskun.imageslider.ImageSlider>
+    </androidx.cardview.widget.CardView>
+
+    <!-- Food category buttons -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp">
+
+            <Button
+                android:id="@+id/home_foodButton"
+                android:background="@drawable/main_border"
+                android:layout_width="0dp"
+                android:layout_margin="1dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text="FOODS"/>
+
+
+        <Button
+            android:id="@+id/home_drinkButton"
+            android:background="@drawable/main_border"
+            android:layout_width="0dp"
+            android:layout_margin="1dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="DRINKS"/>
+
+        <Button
+            android:id="@+id/home_fruitButton"
+            android:background="@drawable/main_border"
+            android:layout_width="0dp"
+            android:layout_margin="1dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="FRUITS"/>
+
+
+    </LinearLayout>
+
+    <!-- Food list -->
+    <GridView
+        android:id="@+id/foodGridView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:verticalSpacing="8dp"
+        android:horizontalSpacing="8dp"
+        android:layout_weight="1"
+        android:layout_marginTop="16dp"
+        android:numColumns="2">
+
+    </GridView>
+
+    <!-- Bottom navigation -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:background="@color/white"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:orientation="horizontal">
+        <ImageButton
+            android:id="@+id/backButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:layout_weight="1"
+            android:src="@drawable/ic_home_baseline_arrow_back_" />
+
+        <ImageButton
+            android:id="@+id/btn_add_blogs"
+            android:layout_width="wrap_content"
+            android:background="@color/white"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_home_edit_blog" />
+
+        <ImageButton
+            android:id="@+id/homeButton"
+            android:layout_width="wrap_content"
+            android:background="@color/white"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_home" />
+
+        <ImageButton
+            android:id="@+id/locationButton"
+            android:layout_width="wrap_content"
+            android:background="@color/white"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_home_baseline_chat_bubble" />
+
+        <ImageButton
+            android:id="@+id/linkButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:layout_weight="1"
+            android:src="@drawable/ic_account_circle" />
+    </LinearLayout>
+</LinearLayout>

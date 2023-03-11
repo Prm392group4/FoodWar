@@ -6,13 +6,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-
 import androidx.fragment.app.Fragment;
-
 import com.example.foodwar.R;
 import com.example.foodwar.blogs_management.MainActivityBlogs;
+import com.example.foodwar.home_management.HomeActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.navigation.NavigationView;
 
 public class HomeFragment extends Fragment {
     Button  btncup;
@@ -21,16 +19,9 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        View view = inflater.inflate(R.layout.activity_home, container, false);
-         add= view.findViewById(R.id.btn_add_blogs);
-        add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent =  new Intent(view.getContext(), MainActivityBlogs.class);
-                startActivity(intent);
-            }
-        });
-
+        View view = inflater.inflate(R.layout.activity_home_main, container, false);
+        Intent intent = new Intent(view.getContext(), HomeActivity.class);
+        startActivity(intent);
         return view;
 
     }

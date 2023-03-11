@@ -4,7 +4,10 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -64,6 +67,10 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+        <activity android:name=".home_management.HomeActivity"></activity>
+        <activity android:name=".home_management.SearchActivity"></activity>
+        <activity android:name=".home_management.SearchByLocationActivity"></activity>
+
         <activity android:name=".blogs_management.MainActivityBlogs"></activity>
         <activity android:name=".blogs_management.DetailActivityBlogs"></activity>
         <activity android:name=".user_management.ProfileActivity"></activity>
