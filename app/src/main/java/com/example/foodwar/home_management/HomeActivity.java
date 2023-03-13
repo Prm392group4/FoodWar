@@ -1,5 +1,7 @@
 package com.example.foodwar.home_management;
 
+import static android.content.ContentValues.TAG;
+
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
@@ -31,6 +33,11 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -57,11 +64,9 @@ public class HomeActivity extends AppCompatActivity implements
     private LocationManager locationManager;
 
     private ImageSlider imageSlider;
-    FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
 
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
-    CollectionReference foodsRef = db.collection("foods");
-
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference foodsRef = database.getReference("foods");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -133,34 +138,33 @@ public class HomeActivity extends AppCompatActivity implements
         });
 
 
-        // img slide
+        //img slide
         imageSlider = findViewById(R.id.home_imgslideshow);
         ArrayList<SlideModel> slideModels = new ArrayList<>();
 
-        firebaseFirestore.collection("imageslide").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference slidesRef = database.getReference("foods");
 
-                        if (task.isSuccessful()) {
-                            for (QueryDocumentSnapshot queryDocumentSnapshot : task.getResult()) {
-                                slideModels.add(new SlideModel(queryDocumentSnapshot.getString("url"), ScaleTypes.FIT));
-                                imageSlider.setImageList(slideModels, ScaleTypes.FIT);
-                            }
-                        } else {
-                            Log.e("HomeActivity", "Error getting documents.", task.getException());
-                            Toast.makeText(HomeActivity.this, "can not load img", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(HomeActivity.this, "can not load img", Toast.LENGTH_SHORT).show();
-                    }
-                });
+        slidesRef.orderByChild("order").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                slideModels.clear(); // Clear the existing data in the slideModels list before adding new data
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    String url = snapshot.child("img").getValue(String.class);
+                    slideModels.add(new SlideModel(url, ScaleTypes.FIT));
+                }
+                imageSlider.setImageList(slideModels, ScaleTypes.FIT);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.w("HomeActivity", "loadSlides:onCancelled", databaseError.toException());
+                Toast.makeText(HomeActivity.this, "can not load img", Toast.LENGTH_SHORT).show();
+            }
+        });
 
 
-        //Show list all foods
+        // Show all foods
         gridView = findViewById(R.id.foodGridView);
         foodAdapter = new FoodAdapter(this, foods);
         gridView.setAdapter(foodAdapter);
@@ -168,80 +172,72 @@ public class HomeActivity extends AppCompatActivity implements
         food_bnt = findViewById(R.id.home_foodButton);
         drink_btn = findViewById(R.id.home_drinkButton);
         fruit_btn = findViewById(R.id.home_fruitButton);
-        foodsRef.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+
+        foodsRef.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onSuccess(QuerySnapshot querySnapshot) {
+            public void onDataChange(DataSnapshot dataSnapshot) {
                 List<Food> foods = new ArrayList<>();
-                for (DocumentSnapshot document : querySnapshot.getDocuments()) {
-                    Food food = document.toObject(Food.class);
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    Food food = snapshot.getValue(Food.class);
                     foods.add(food);
                 }
                 FoodAdapter adapter = new FoodAdapter(HomeActivity.this, foods);
                 gridView.setAdapter(adapter);
 
-
+                // Filter foods by category foods
                 food_bnt.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Query query = FirebaseFirestore.getInstance().collection("foods").whereEqualTo("category", "food");
-                        query.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                            @Override
-                            public void onSuccess(QuerySnapshot querySnapshot) {
-                                List<Food> searchResults = new ArrayList<>();
-                                for (DocumentSnapshot document : querySnapshot.getDocuments()) {
-                                    Food food = document.toObject(Food.class);
-                                    searchResults.add(food);
-                                }
-                                FoodAdapter adapter = new FoodAdapter(HomeActivity.this, searchResults);
-                                gridView.setAdapter(adapter);
-                                adapter.notifyDataSetChanged();
-                                Log.d("SearchResults", searchResults.toString());
+                        List<Food> filteredFoods = new ArrayList<>();
+                        for (Food food : foods) {
+                            if (food.getCategory().equals("food")) {
+                                filteredFoods.add(food);
                             }
-                        });
+                        }
+                        FoodAdapter adapter = new FoodAdapter(HomeActivity.this, filteredFoods);
+                        gridView.setAdapter(adapter);
+                        foodAdapter.notifyDataSetChanged(); // Notify the adapter that the data has changed
                     }
                 });
-
+                // Filter foods by category drink
                 drink_btn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Query query = FirebaseFirestore.getInstance().collection("foods").whereEqualTo("category", "drink");
-                        query.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                            @Override
-                            public void onSuccess(QuerySnapshot querySnapshot) {
-                                List<Food> searchResults = new ArrayList<>();
-                                for (DocumentSnapshot document : querySnapshot.getDocuments()) {
-                                    Food food = document.toObject(Food.class);
-                                    searchResults.add(food);
-                                }
-                                FoodAdapter adapter = new FoodAdapter(HomeActivity.this, searchResults);
-                                gridView.setAdapter(adapter);
-                                adapter.notifyDataSetChanged();
-                                Log.d("SearchResults", searchResults.toString());
+                        List<Food> filteredFoods = new ArrayList<>();
+                        for (Food food : foods) {
+                            if (food.getCategory().equals("drink")) {
+                                filteredFoods.add(food);
                             }
-                        });
+                        }
+                        FoodAdapter adapter = new FoodAdapter(HomeActivity.this, filteredFoods);
+                        gridView.setAdapter(adapter);
+                        foodAdapter.notifyDataSetChanged(); // Notify the adapter that the data has changed
                     }
                 });
 
+                // Filter foods by category fruit
                 fruit_btn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Query query = FirebaseFirestore.getInstance().collection("foods").whereEqualTo("category", "fruit");
-                        query.get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                            @Override
-                            public void onSuccess(QuerySnapshot querySnapshot) {
-                                List<Food> searchResults = new ArrayList<>();
-                                for (DocumentSnapshot document : querySnapshot.getDocuments()) {
-                                    Food food = document.toObject(Food.class);
-                                    searchResults.add(food);
-                                }
-                                FoodAdapter adapter = new FoodAdapter(HomeActivity.this, searchResults);
-                                gridView.setAdapter(adapter);
-                                adapter.notifyDataSetChanged();
-                                Log.d("SearchResults", searchResults.toString());
+                        List<Food> filteredFoods = new ArrayList<>();
+                        for (Food food : foods) {
+                            if (food.getCategory().equals("fruit")) {
+                                filteredFoods.add(food);
                             }
-                        });
+                        }
+                        FoodAdapter adapter = new FoodAdapter(HomeActivity.this, filteredFoods);
+                        gridView.setAdapter(adapter);
+                        foodAdapter.notifyDataSetChanged(); // Notify the adapter that the data has changed
                     }
                 });
+            }
+
+
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                // Failed to read value
+                Log.w(TAG, "Failed to read value.", error.toException());
             }
         });
 

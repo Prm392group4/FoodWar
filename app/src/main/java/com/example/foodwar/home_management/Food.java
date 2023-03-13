@@ -4,14 +4,16 @@ public class Food {
     private String name;
     private String des;
     private String img;
+    private String category;
 
     public Food() {
     }
 
-    public Food(String name, String des, String img) {
+    public Food(String name, String des, String img, String category) {
         this.name = name;
         this.des = des;
         this.img = img;
+        this.category = category;
     }
 
     public String getName() {
@@ -36,5 +38,13 @@ public class Food {
 
     public void setImg(String img) {
         this.img = img;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 }

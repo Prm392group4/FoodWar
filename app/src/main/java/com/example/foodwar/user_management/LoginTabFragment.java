@@ -108,6 +108,11 @@ public class LoginTabFragment extends Fragment {
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
+                                // hide the loading dialog
+                                if (dialog != null && dialog.isShowing() && !getActivity().isFinishing()) {
+                                    dialog.dismiss();
+                                }
+
                                 if (task.isSuccessful()) {
                                     FirebaseUser user = mAuth.getCurrentUser();
                                     String uid = user.getUid();
