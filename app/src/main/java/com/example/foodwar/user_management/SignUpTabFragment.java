@@ -17,13 +17,11 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.ViewPager;
 
-import com.example.foodwar.MainActivity;
 import com.example.foodwar.R;
+import com.example.foodwar.home_management.HomeActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.tabs.TabLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -126,7 +124,7 @@ public class SignUpTabFragment extends Fragment {
                                     userInfo.put("role", "user");
                                     userRef.setValue(userInfo);
 
-                                    Intent intent = new Intent(getActivity(), MainActivity.class);
+                                    Intent intent = new Intent(getActivity(), HomeActivity.class);
                                     startActivity(intent);
                                     getActivity().finish();
                                 } else {

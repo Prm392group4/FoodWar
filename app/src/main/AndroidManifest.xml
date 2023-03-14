@@ -8,15 +8,18 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:theme="@style/Theme.FoodWar"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.FoodWar"
+        android:hardwareAccelerated="true"
         tools:targetApi="31">
 
         <activity
@@ -60,28 +63,29 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        <activity
-            android:name=".MainActivity"
-            android:exported="true">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity android:name=".home_management.HomeActivity"></activity>
-        <activity android:name=".home_management.SearchActivity"></activity>
-        <activity android:name=".home_management.SearchByLocationActivity"></activity>
-
         <activity android:name=".blogs_management.MainActivityBlogs"></activity>
         <activity android:name=".blogs_management.DetailActivityBlogs"></activity>
-        <activity android:name=".user_management.ProfileActivity"></activity>
-        <activity android:name="com.example.foodwar.user_management.EditProfileActivity" />
-        <activity android:name=".menu.MainMenu"></activity>
+        <activity android:name=".menu.MainMenu"
+            android:theme="@style/Theme.FoodWar"
+            >
+        </activity>
         <activity android:name=".menu.SettingsFragment"></activity>
         <activity android:name=".menu.HomeFragment"></activity>
         <activity android:name=".menu.ShareFragment"></activity>
         <activity android:name=".menu.AboutFragment"></activity>
         <activity android:name=".blogs_management.MainupBlogsItems"></activity>
         <activity android:name=".menu.getAccountMenu"></activity>
+        <activity android:name=".blogs_management.UpdateActivity"></activity>
+        <activity android:name=".user_management.UserProfileMain"></activity>
+        <activity android:name=".menu.MainDarkMode"
+            android:theme="@style/AppTheme"
+            ></activity>
+        <activity android:name=".home_management.HomeActivity"
+            android:theme="@style/Theme.FoodWar"
+            >
+
+        </activity>
+        <activity android:name=".home_management.SearchActivity"></activity>
 
         <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
         <meta-data android:name="com.facebook.sdk.ClientToken" android:value="@string/facebook_client_token"/>

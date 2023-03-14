@@ -20,6 +20,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -67,6 +69,8 @@ public class MainActivityBlogs extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     blogEntity blogEntity = dataSnapshot.getValue(blogEntity.class);
+                    blogEntity.setKey(dataSnapshot.getKey());
+                    Collections.reverse(dataList);
                     dataList.add(blogEntity);
 
                 }

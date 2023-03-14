@@ -16,12 +16,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import com.example.foodwar.MainActivity;
 import com.example.foodwar.R;
-import com.example.foodwar.blogs_management.MainActivityBlogs;
-import com.example.foodwar.blogs_management.MainupBlogsItems;
+import com.example.foodwar.home_management.HomeActivity;
 import com.example.foodwar.menu.MainMenu;
-import com.example.foodwar.menu.getAccountMenu;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -122,7 +119,7 @@ public class LoginTabFragment extends Fragment {
                                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                             String role = dataSnapshot.child("role").getValue(String.class);
                                             if (role.equals("user")) {
-                                                Intent intent = new Intent(getActivity(), MainMenu.class);
+                                                Intent intent = new Intent(getActivity(), HomeActivity.class);
                                                 startActivity(intent);
                                                 getActivity().finish();
                                             } else if (role.equals("admin")) {

@@ -1,7 +1,7 @@
 package com.example.foodwar.blogs_management;
 
 public class blogEntity {
-    String blog_description, blog_name, image_blog, author, publisher;
+    String blog_description, blog_name, image_blog, author, publisher, Key;
 
     public blogEntity() {
     }
@@ -48,6 +48,14 @@ public class blogEntity {
 
     public String getPublisher() {
         return publisher;
+    }
+
+    public String getKey() {
+        return Key;
+    }
+
+    public void setKey(String key) {
+        this.Key = Key;
     }
 
     public void setPublisher(String publisher) {
