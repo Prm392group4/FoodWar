@@ -150,7 +150,6 @@ public class SignUpTabFragment extends Fragment {
                     cf_pass.setTransformationMethod(PasswordTransformationMethod.getInstance());
                     showPasswordButton.setImageResource(R.drawable.ic_hide_password);
                     showPasswordButton2.setImageResource(R.drawable.ic_hide_password);
-
                 }
             }
         });
