@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
@@ -13,10 +15,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.foodwar.MainActivity;
@@ -38,7 +42,7 @@ public class SignUpTabFragment extends Fragment {
    EditText mobile_num,cf_pass;
 
     private FirebaseAuth mAuth;
-
+    private boolean passwordVisible = false;
     Button signupButton;
 
     float v=0;
@@ -46,7 +50,8 @@ public class SignUpTabFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container , Bundle saveInstanceState){
 
         ViewGroup root = (ViewGroup) inflater.inflate(R.layout.signup_tab_fragment,container,false);
-
+        ImageButton showPasswordButton = root.findViewById(R.id.show_password_button);
+        ImageButton showPasswordButton2 = root.findViewById(R.id.show_password_button2);
         email = root.findViewById(R.id.email);
         pass = root.findViewById(R.id.password);
 
@@ -57,8 +62,10 @@ public class SignUpTabFragment extends Fragment {
 
         email.setTranslationX(800);
         pass.setTranslationX(800);
+        pass.setTransformationMethod(new PasswordTransformationMethod());
 
         cf_pass.setTranslationX(800);
+        cf_pass.setTransformationMethod(new PasswordTransformationMethod());
         signupButton.setTranslationX(800);
 
         email.setAlpha(v);
@@ -104,6 +111,49 @@ public class SignUpTabFragment extends Fragment {
         pass.addTextChangedListener(textWatcher);
         cf_pass.addTextChangedListener(textWatcher);
 
+        //hide show password
+
+
+        showPasswordButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                passwordVisible = !passwordVisible;
+                if (passwordVisible) {
+                    // Show password
+                    pass.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                    cf_pass.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                    showPasswordButton.setImageResource(R.drawable.ic_show_password);
+                    showPasswordButton2.setImageResource(R.drawable.ic_show_password);
+                } else {
+                    // Hide password
+                    pass.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    cf_pass.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    showPasswordButton.setImageResource(R.drawable.ic_hide_password);
+                    showPasswordButton2.setImageResource(R.drawable.ic_hide_password);
+                }
+            }
+        });
+
+        showPasswordButton2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                passwordVisible = !passwordVisible;
+                if (passwordVisible) {
+                    // Show password
+                    pass.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                    cf_pass.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                    showPasswordButton.setImageResource(R.drawable.ic_show_password);
+                    showPasswordButton2.setImageResource(R.drawable.ic_show_password);
+                } else {
+                    // Hide password
+                    pass.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    cf_pass.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                    showPasswordButton.setImageResource(R.drawable.ic_hide_password);
+                    showPasswordButton2.setImageResource(R.drawable.ic_hide_password);
+                }
+            }
+        });
+
 //event signup for button sign up
         signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -118,7 +168,7 @@ public class SignUpTabFragment extends Fragment {
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
                                     // Sign up successful
-                                    Toast.makeText(getActivity(), "Sign up successful", Toast.LENGTH_SHORT).show();
+
                                     FirebaseUser user = mAuth.getCurrentUser();
                                     DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("users").child(user.getUid());
                                     HashMap<String, String> userInfo = new HashMap<>();
@@ -126,24 +176,46 @@ public class SignUpTabFragment extends Fragment {
                                     userInfo.put("role", "user");
                                     userRef.setValue(userInfo);
 
-                                    Intent intent = new Intent(getActivity(), MainActivity.class);
-                                    startActivity(intent);
-                                    getActivity().finish();
+                                    // Send verification email
+                                    sendVerificationEmail(user);
+
+                                    // Sign out the user and show toast message
+                                    mAuth.signOut();
+                                    Toast.makeText(getActivity(), "Check your email to verify your account", Toast.LENGTH_SHORT).show();
+
+                                    // Go back to LoginTabFragment
+                                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                                    fragmentManager.popBackStackImmediate();
                                 } else {
                                     // Sign up failed
                                     String errorMessage = task.getException().getMessage();
                                     Log.e("SignupTabFragment", "Sign up failed: " + errorMessage);
                                     Toast.makeText(getActivity(), "Sign up failed: " + errorMessage, Toast.LENGTH_SHORT).show();
                                 }
+                                dialog.dismiss(); // dismiss the loading dialog
                             }
                         });
             }
         });
- 
+
+
 
                 return root;
 
 
+    }
+
+    private void sendVerificationEmail(FirebaseUser user) {
+        user.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    Log.d("SignupTabFragment", "Verification email sent to " + user.getEmail());
+                } else {
+                    Log.e("SignupTabFragment", "Failed to send verification email", task.getException());
+                }
+            }
+        });
     }
 
     private boolean isValidEmail(String stremail) {
