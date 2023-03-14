@@ -11,40 +11,31 @@
     tools:context=".home_management.HomeActivity"
     android:paddingRight="16dp">
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/btn_add_blogs_float"
-        android:backgroundTint="@color/white"
-        android:src="@drawable/ic_add"
-        app:layout_anchor="@id/bottomAppBar"
-        app:maxImageSize="40dp"
-        app:tint ="@color/main"
-        tools:ignore="MissingConstraints,NotSibling" />
     <!-- Search bar -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:padding="1dp"
-        android:gravity="center_vertical">
+        android:padding="1dp">
+
         <TextView
             android:id="@+id/home_searchTextView"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
+            android:layout_marginRight="2dp"
+            android:layout_weight="1"
             android:background="@drawable/main_border"
             android:hint="Search...."
-            android:layout_marginRight="2dp"
-            android:padding="12dp"/>
+            android:padding="12dp" />
+
         <Button
             android:id="@+id/home_btn_location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/main_border"
             android:text="location"
-            android:textSize="12dp"
-            >
+            android:textSize="12dp">
 
         </Button>
     </LinearLayout>
@@ -53,7 +44,8 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp">
+        android:layout_marginTop="16dp"
+        tools:ignore="MissingClass">
         <com.denzcoskun.imageslider.ImageSlider
             android:layout_width="match_parent"
             android:layout_height="200dp"
@@ -140,15 +132,19 @@
             android:background="@color/white"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_home_edit_blog" />
+            android:src="@drawable/blog_image" />
 
-        <ImageButton
-            android:id="@+id/homeButton"
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:layout_width="wrap_content"
-            android:background="@color/white"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_home" />
+            android:id="@+id/btn_add_blogs_float"
+            android:backgroundTint="@color/white"
+            android:src="@drawable/ic_add"
+            app:layout_anchor="@id/bottomAppBar"
+            app:maxImageSize="40dp"
+            app:tint ="@color/main"
+            tools:ignore="MissingConstraints,NotSibling" />
+
 
         <ImageButton
             android:id="@+id/locationButton"
@@ -159,7 +155,7 @@
             android:src="@drawable/ic_home_baseline_chat_bubble" />
 
         <ImageButton
-            android:id="@+id/linkButton"
+            android:id="@+id/profileButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/white"

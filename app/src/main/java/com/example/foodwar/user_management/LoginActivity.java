@@ -1,7 +1,5 @@
 package com.example.foodwar.user_management;
 
-import static android.content.ContentValues.TAG;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
@@ -12,8 +10,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.foodwar.MainActivity;
 import com.example.foodwar.R;
+import com.example.foodwar.home_management.HomeActivity;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -161,7 +159,7 @@ public class LoginActivity extends AppCompatActivity {
                             updateUI(user);
 
                             // Start MainActivity
-                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                            Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                             startActivity(intent);
                             finish();
                         } else {

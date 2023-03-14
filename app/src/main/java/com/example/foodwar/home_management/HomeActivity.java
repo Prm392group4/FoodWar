@@ -22,45 +22,41 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+
 import com.denzcoskun.imageslider.ImageSlider;
 import com.denzcoskun.imageslider.constants.ScaleTypes;
 import com.denzcoskun.imageslider.models.SlideModel;
 import com.example.foodwar.R;
 import com.example.foodwar.blogs_management.MainActivityBlogs;
 import com.example.foodwar.blogs_management.MainupBlogsItems;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
+import com.example.foodwar.user_management.UserProfileMain;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class HomeActivity extends AppCompatActivity implements
-        LocationListener {
+public class HomeActivity extends AppCompatActivity implements LocationListener {
 
+    //menu
+
+    //
     private GridView gridView;
     private List<Food> foods = new ArrayList<>();
     private FoodAdapter foodAdapter;
     private Button food_bnt, drink_btn, fruit_btn;
-    private ImageButton btn_blogs;
+    private ImageButton btn_blogs ,btnBack;
+    private ImageButton btnuserProfile;
     private FloatingActionButton btn_blog_float_add;
 
     private static final int PERMISSION_REQUEST_LOCATION = 1;
-    private Button locationTextView;
+    private Button locationTextView ;
     private LocationManager locationManager;
 
     private ImageSlider imageSlider;
@@ -71,6 +67,27 @@ public class HomeActivity extends AppCompatActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_main);
+
+
+        //menu
+
+        //
+
+
+
+
+
+
+
+
+        btnuserProfile = findViewById(R.id.profileButton);
+        btnuserProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomeActivity.this, UserProfileMain.class);
+                startActivity(intent);
+            }
+        });
 
         //Go to add blogs
         btn_blogs = findViewById(R.id.btn_add_blogs);
@@ -114,15 +131,7 @@ public class HomeActivity extends AppCompatActivity implements
             }
         });
 
-        // Back to hoome
-        ImageButton btn_home = findViewById(R.id.homeButton);
-        btn_home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this, HomeActivity.class);
-                startActivity(intent);
-            }
-        });
+
 
         // Back to privious
 

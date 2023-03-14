@@ -53,6 +53,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
                 intent.putExtra("blog_description", dataList.get(holder.getAdapterPosition()).getBlog_description());
                 intent.putExtra("author", dataList.get(holder.getAdapterPosition()).getAuthor());
                 intent.putExtra("publisher", dataList.get(holder.getAdapterPosition()).getPublisher());
+                intent.putExtra("Key", dataList.get(holder.getAdapterPosition()).getKey());
                 context.startActivity(intent);
             }
         });
@@ -84,8 +85,6 @@ class MyViewHolder extends RecyclerView.ViewHolder {
         recDesc = itemView.findViewById(R.id.recDesc);
         recCard = itemView.findViewById(R.id.recCard);
         recAuthor = itemView.findViewById(R.id.recAuthor);
-
-
 
 
 
