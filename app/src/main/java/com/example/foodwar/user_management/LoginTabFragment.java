@@ -138,7 +138,6 @@ public class LoginTabFragment extends Fragment {
                                 if (dialog != null && dialog.isShowing() && !getActivity().isFinishing()) {
                                     dialog.dismiss();
                                 }
-
                                 if (task.isSuccessful()) {
                                     FirebaseUser user = mAuth.getCurrentUser();
                                     if (user.isEmailVerified()) {
