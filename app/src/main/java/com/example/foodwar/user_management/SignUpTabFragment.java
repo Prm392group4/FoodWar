@@ -23,7 +23,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
 
-import com.example.foodwar.MainActivity;
+import com.example.foodwar.home_management.HomeActivity;
 import com.example.foodwar.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -150,6 +150,7 @@ public class SignUpTabFragment extends Fragment {
                     cf_pass.setTransformationMethod(PasswordTransformationMethod.getInstance());
                     showPasswordButton.setImageResource(R.drawable.ic_hide_password);
                     showPasswordButton2.setImageResource(R.drawable.ic_hide_password);
+
                 }
             }
         });
@@ -168,6 +169,7 @@ public class SignUpTabFragment extends Fragment {
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
                                     // Sign up successful
+
                                     FirebaseUser user = mAuth.getCurrentUser();
                                     DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("users").child(user.getUid());
                                     HashMap<String, String> userInfo = new HashMap<>();
