@@ -168,7 +168,6 @@ public class SignUpTabFragment extends Fragment {
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
                                     // Sign up successful
-
                                     FirebaseUser user = mAuth.getCurrentUser();
                                     DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("users").child(user.getUid());
                                     HashMap<String, String> userInfo = new HashMap<>();
