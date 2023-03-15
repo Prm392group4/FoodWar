@@ -65,6 +65,8 @@
             android:id="@+id/imageView"
             android:layout_width="match_parent"
             android:layout_height="280dp"
+            android:scaleType="fitXY"
+            android:paddingBottom="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:srcCompat="@drawable/img_food" />
