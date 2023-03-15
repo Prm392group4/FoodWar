@@ -22,7 +22,14 @@ public class DetailFood extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_food);
         ActionToolBar();
-        Init();
+        imageView_restaurant = findViewById(R.id.imageview_restaurant);
+        imageView_feedBack = findViewById(R.id.imageView_feedBack);
+        imageView = findViewById(R.id.imageView);
+        textView_price = findViewById(R.id.detail_textView_price);
+        textView_nameProduct = findViewById(R.id.textView_nameProduct);
+        textView_description = findViewById(R.id.textView_description);
+
+
         Bundle bundle = getIntent().getExtras();
         if (bundle != null){
             textView_price.setText(bundle.getString("Price"));
@@ -45,15 +52,6 @@ public class DetailFood extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-    }
-
-    private void Init() {
-        imageView_restaurant = findViewById(R.id.imageview_restaurant);
-        imageView_feedBack = findViewById(R.id.imageView_feedBack);
-        imageView = findViewById(R.id.imageView);
-        textView_price = findViewById(R.id.textview_price);
-        textView_nameProduct = findViewById(R.id.textview_price);
-        textView_description = findViewById(R.id.textView_description);
     }
 
     //create back button

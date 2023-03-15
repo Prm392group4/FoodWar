@@ -70,7 +70,7 @@
             app:srcCompat="@drawable/img_food" />
 
         <TextView
-            android:id="@+id/textView_price"
+            android:id="@+id/detail_textView_price"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="500.000đ"

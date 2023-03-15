@@ -2,6 +2,7 @@ package com.example.foodwar.home_management;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -9,12 +10,16 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import com.example.foodwar.R;
+import com.example.foodwar.user_management.UserProfileMain;
+
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
@@ -32,6 +37,39 @@ public class SearchByLocationActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_foods_search_location);
         locationTextView = findViewById(R.id.location_text_view);
+
+
+        //Goto profile
+        ImageButton btnuserProfile = findViewById(R.id.profileButton);
+        btnuserProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SearchByLocationActivity.this, UserProfileMain.class);
+                startActivity(intent);
+            }
+        });
+        // Back to home
+        ImageButton btn_home = findViewById(R.id.homeButton);
+        btn_home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SearchByLocationActivity.this, HomeActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        // Back to previous
+        ImageButton back_privious = (ImageButton) findViewById(R.id.backButton);
+        back_privious.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
 
         // Kiểm tra quyền truy cập vị trí
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {

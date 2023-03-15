@@ -14,6 +14,7 @@ import android.widget.ImageButton;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.foodwar.R;
+import com.example.foodwar.user_management.UserProfileMain;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -44,6 +45,16 @@ public class SearchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_foods_search);
 
+
+        //Goto profile
+        ImageButton btnuserProfile = findViewById(R.id.search_profileButton);
+        btnuserProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(SearchActivity.this, UserProfileMain.class);
+                startActivity(intent);
+            }
+        });
         // Back to home
         ImageButton btn_home = findViewById(R.id.homeButton);
         btn_home.setOnClickListener(new View.OnClickListener() {

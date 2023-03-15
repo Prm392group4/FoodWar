@@ -101,7 +101,7 @@
 
 
         <ImageButton
-            android:id="@+id/linkButton"
+            android:id="@+id/search_profileButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/white"

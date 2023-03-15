@@ -14,6 +14,7 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageButton;
@@ -29,6 +30,7 @@ import com.denzcoskun.imageslider.models.SlideModel;
 import com.example.foodwar.R;
 import com.example.foodwar.blogs_management.MainActivityBlogs;
 import com.example.foodwar.blogs_management.MainupBlogsItems;
+import com.example.foodwar.food_management.DetailFood;
 import com.example.foodwar.user_management.UserProfileMain;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
@@ -69,17 +71,8 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
         setContentView(R.layout.activity_home_main);
 
 
-        //menu
 
-        //
-
-
-
-
-
-
-
-
+        //Goto profile
         btnuserProfile = findViewById(R.id.profileButton);
         btnuserProfile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -108,7 +101,6 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
                 startActivity(intent);
             }
         });
-
 
 
         //Go to search activity
@@ -250,6 +242,16 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
             }
         });
 
+
+        // Go to foods details
+        GridView gr = findViewById(R.id.foodGridView);
+        gr.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(HomeActivity.this, DetailFood.class);
+                startActivity(intent);
+            }
+        });
 
         // Hiển Thị khu vực hiện tại.
         locationTextView = findViewById(R.id.home_btn_location);
