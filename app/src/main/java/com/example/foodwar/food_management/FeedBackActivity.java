@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RatingBar;
 import android.widget.Toast;
 
 import com.example.foodwar.R;
@@ -19,9 +20,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class FeedBack extends AppCompatActivity {
+import java.util.ArrayList;
+
+public class FeedBackActivity extends AppCompatActivity {
     EditText feedBack;
     Button submit;
+    RatingBar rateBar;
+    ArrayList<FeedBack> listFeedBack;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +37,6 @@ public class FeedBack extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 pushData();
-                finish();
             }
         });
     }
@@ -50,30 +54,39 @@ public class FeedBack extends AppCompatActivity {
         });
     }
 
-    private void pushData(){
+    private void pushData() {
         // Write a message to the database
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference();
+        String content = feedBack.getText().toString();
+        float ratingStar = rateBar.getRating();
 
-        myRef.child("FeedBack").push().setValue(feedBack.getText().toString())
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        // Feedback saved successfully
-                        Toast.makeText(FeedBack.this, "Feedback submitted successfully", Toast.LENGTH_SHORT).show();
-                        finish();
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        // Failed to save feedback
-                        Toast.makeText(FeedBack.this, "Failed to submit feedback", Toast.LENGTH_SHORT).show();
-                    }
-                });
+        // Create FeedbackModel object
+        FeedBack feedback = new FeedBack(content, ratingStar);
+
+        if (!feedBack.getText().toString().isEmpty()||!rateBar.toString().isEmpty()) {
+            myRef.child("FeedBack").push().setValue(feedback)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            // Feedback saved successfully
+                            Toast.makeText(FeedBackActivity.this, "Feedback submitted successfully", Toast.LENGTH_SHORT).show();
+                            finish();
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            // Failed to save feedback
+                            Toast.makeText(FeedBackActivity.this, "Failed to submit feedback", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+        }else{
+            Toast.makeText(FeedBackActivity.this, "Fill in FeedBack", Toast.LENGTH_SHORT).show();
+        }
     }
 
-    private void readDatabase(){
+    private void readDatabase() {
         // Read from the database
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("FeedBack");
@@ -91,8 +104,10 @@ public class FeedBack extends AppCompatActivity {
             }
         });
     }
+
     private void Init() {
         feedBack = findViewById(R.id.feedBack);
+        rateBar = findViewById(R.id.ratingBar);
         submit = findViewById(R.id.submit);
     }
 }

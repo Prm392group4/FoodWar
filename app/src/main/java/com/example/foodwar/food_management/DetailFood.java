@@ -47,7 +47,7 @@ public class DetailFood extends AppCompatActivity {
         imageView_feedBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(DetailFood.this,FeedBack.class);
+                Intent intent = new Intent(DetailFood.this, FeedBackActivity.class);
                 startActivity(intent);
             }
         });

@@ -103,6 +103,7 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
         });
 
 
+
         //Go to search activity
         TextView editTextSearch = findViewById(R.id.home_searchTextView);
         editTextSearch.setOnClickListener(new View.OnClickListener() {

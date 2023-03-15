@@ -116,7 +116,7 @@
         <activity android:name=".home_management.SearchByLocationActivity"></activity>
         <activity android:name=".food_management.DetailFood"></activity>
         <activity android:name=".food_management.RestaurantActivity"></activity>
-        <activity android:name=".food_management.FeedBack"></activity>
+        <activity android:name=".food_management.FeedBackActivity"></activity>
     </application>
 
 </manifest>
