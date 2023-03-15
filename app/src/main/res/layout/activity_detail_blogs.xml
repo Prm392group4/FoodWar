@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -8,114 +8,142 @@
     android:orientation="vertical"
     tools:context=".blogs_management.DetailActivityBlogs">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/detailTitle"
-        android:layout_marginTop="24dp"
-        android:padding="5dp"
-        android:text="Title"
-        android:background="@drawable/main_border"
-        android:textSize="18sp"
-        android:layout_gravity="center"
-        android:textColor="@color/main"
-        android:layout_marginBottom="12dp"/>
-
-    <ImageView
-        android:layout_width="400dp"
-        android:layout_height="200dp"
-        android:id="@+id/detailImage"
-        android:padding="8dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/border_main_1"
-        android:layout_gravity="center"
-        android:src="@drawable/image_profile"
-        android:scaleType="centerCrop"/>
-
-    <TextView
-        android:id="@+id/detailDesc"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/main_border"
-        android:padding="10dp"
-        android:text="Description"
-        android:textColor="@color/main"
-        android:textSize="10sp" />
 
     <TextView
         android:id="@+id/publisher"
         android:layout_width="150dp"
         android:layout_height="25dp"
         android:layout_gravity="center"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="10dp"
         android:background="@drawable/main_border"
-        android:padding="5dp"
+        android:padding="15dp"
         android:text="Pulisher"
         android:textAlignment="center"
         android:textColor="@color/main"
-        android:textSize="10sp" />
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.161"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/textViewlike"
+        android:layout_width="124dp"
+        android:layout_height="36dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:text="Count Like"
+        android:textSize="24dp"
+        android:textAlignment="center"
+        android:textColor="@color/btnred"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.205"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.588"
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/buttonLike"
         android:layout_width="wrap_content"
         android:layout_height="39dp"
-        android:text="Button" />
+        android:text="Like"
+        android:background="@drawable/main_border"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.241"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.82" />
+
+    <TextView
+        android:id="@+id/detailDesc"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/main_border"
+        android:padding="10dp"
+        android:text="Description"
+        android:textColor="@color/main"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.645"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/buttonUnLike"
+        android:layout_width="wrap_content"
+        android:layout_height="39dp"
+        android:text="DisLike"
+        android:background="@drawable/main_border"
+        android:backgroundTint="@color/gradient_end_color"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.755"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.82"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/authorItems"
         android:layout_width="150dp"
         android:layout_height="25dp"
         android:layout_gravity="center"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="10dp"
         android:background="@drawable/main_border"
         android:padding="5dp"
         android:text="Author"
         android:textAlignment="center"
         android:textColor="@color/main"
-        android:textSize="10sp" />
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.98"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.579" />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <ImageView
+        android:id="@+id/detailImage"
+        android:layout_width="400dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:background="@drawable/border_main_1"
+        android:padding="8dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/image_profile"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.545"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.297"
+        tools:ignore="MissingConstraints" />
 
-        <com.github.clans.fab.FloatingActionMenu
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginEnd="144dp"
-            android:layout_marginBottom="7dp"
-            app:menu_colorNormal="@color/main"
-            app:menu_colorPressed="@color/main"
-            app:menu_fab_size="normal"
-            app:menu_icon="@drawable/ic_list_blogs"
-            app:menu_openDirection="up"
-            app:menu_showShadow="true">
-
-            <com.github.clans.fab.FloatingActionButton
-                android:id="@+id/editButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_edit_blogs"
-                app:fab_colorNormal="@color/mainButton"
-                app:fab_showShadow="true"
-                app:fab_size="mini" />
-
-            <com.github.clans.fab.FloatingActionButton
-                android:id="@+id/deleteButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_delete"
-                app:fab_colorNormal="@color/btnred"
-                app:fab_showShadow="true"
-                app:fab_size="mini" />
-        </com.github.clans.fab.FloatingActionMenu>
-    </RelativeLayout>
+    <TextView
+        android:id="@+id/detailTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@drawable/main_border"
+        android:padding="5dp"
+        android:text="Title"
+        android:textColor="@color/main"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.065"
+        tools:ignore="MissingConstraints" />
 
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

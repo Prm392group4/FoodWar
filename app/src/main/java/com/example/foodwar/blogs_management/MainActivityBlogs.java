@@ -69,7 +69,7 @@ public class MainActivityBlogs extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     blogEntity blogEntity = dataSnapshot.getValue(blogEntity.class);
-                    blogEntity.setKey(dataSnapshot.getKey());
+                   // blogEntity.setKey(dataSnapshot.getKey());
                     Collections.reverse(dataList);
                     dataList.add(blogEntity);
 
