@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@drawable/bg_main"
+    tools:context=".user_management.UserProfileMain">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="30dp"
+        app:cardCornerRadius="30dp"
+        app:cardElevation="20dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center_horizontal"
+            android:padding="24dp"
+            android:background="@drawable/bg_main">
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Edit Profile"
+                android:textAlignment="center"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="36sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:id="@+id/avataImage"
+                android:padding="8dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/bg_main"
+                android:layout_gravity="center"
+                android:src="@drawable/image_profile"
+                android:scaleType="centerCrop"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/editName"
+                android:background="@drawable/main_border"
+                android:layout_marginTop="2dp"
+                android:padding="8dp"
+                android:hint="Name"
+                android:drawableLeft="@drawable/ic_home"
+                android:drawablePadding="8dp"
+                android:textColor="@color/black"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/editEmail"
+                android:background="@drawable/main_border"
+                android:layout_marginTop="5dp"
+                android:padding="8dp"
+                android:hint="Email"
+                android:drawableLeft="@drawable/ic_email"
+                android:drawablePadding="8dp"
+                android:textColor="@color/black"/>
+
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/editMobileNum"
+                android:background="@drawable/main_border"
+                android:layout_marginTop="10dp"
+                android:padding="8dp"
+                android:hint="Mobile number"
+                android:drawableLeft="@drawable/ic_username"
+                android:drawablePadding="8dp"
+                android:textColor="@color/black"/>
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/editAdress"
+                android:background="@drawable/main_border"
+                android:layout_marginTop="10dp"
+                android:padding="8dp"
+                android:hint="Adress"
+                android:inputType="text"
+                android:drawableLeft="@drawable/ic_edit_blogs"
+                android:drawablePadding="8dp"
+                android:textColor="@color/black"/>
+
+            <Button
+                android:id="@+id/saveButton"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/main_border"
+                android:backgroundTint="@color/mainButton"
+                android:text="Save"
+                android:textSize="18sp"
+                app:cornerRadius="20dp" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

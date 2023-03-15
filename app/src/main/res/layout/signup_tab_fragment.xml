@@ -46,8 +46,22 @@
         app:layout_constraintHorizontal_bias="0.365"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.378"
+        app:layout_constraintVertical_bias="0.377"
         app:layout_constraintWidth_percent=".8" />
+
+    <ImageButton
+        android:id="@+id/show_password_button"
+        android:layout_width="62dp"
+        android:layout_height="48dp"
+        android:background="?selectableItemBackgroundBorderless"
+
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_hide_password"
+        app:layout_constraintEnd_toEndOf="@id/password"
+
+
+        app:layout_constraintTop_toTopOf="@id/password"
+        />
 
     <EditText
         android:id="@+id/cf_password"
@@ -70,6 +84,21 @@
         app:layout_constraintTop_toBottomOf="@+id/password"
         app:layout_constraintVertical_bias="0.041"
         app:layout_constraintWidth_percent=".8" />
+
+
+    <ImageButton
+        android:id="@+id/show_password_button2"
+        android:layout_width="62dp"
+        android:layout_height="48dp"
+        android:background="?selectableItemBackgroundBorderless"
+
+        android:scaleType="fitCenter"
+        android:src="@drawable/ic_hide_password"
+        app:layout_constraintEnd_toEndOf="@id/cf_password"
+
+
+        app:layout_constraintTop_toTopOf="@id/cf_password"
+        />
 
     <Button
         android:id="@+id/btn_signup"

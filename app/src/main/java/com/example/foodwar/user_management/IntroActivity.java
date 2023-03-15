@@ -2,6 +2,7 @@ package com.example.foodwar.user_management;
 
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -36,12 +37,12 @@ public class IntroActivity extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
+//block this code for represent purpose
         // when this activity is about to be launch we need to check if its openened before or not
 //        if (restorePrefData()) {
 //
-//            Intent mainActivity = new Intent(getApplicationContext(), MainActivity.class );
-//            startActivity(mainActivity);
+//            Intent loginActivity = new Intent(getApplicationContext(), LoginActivity.class );
+//            startActivity(loginActivity);
 //            finish();
 //        }
 
@@ -59,11 +60,10 @@ public class IntroActivity extends AppCompatActivity {
 
         // fill list screen
         final List<ScreenItem> mList = new ArrayList<>();
-        mList.add(new ScreenItem("Reivew Chân Thật"," tất cả đồ ăn sẽ được đánh giá bởi những người dùng khác", R.drawable.img1));
-        mList.add(new ScreenItem("Fast Delivery","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua, consectetur  consectetur adipiscing elit", R.drawable.img2));
-        mList.add(new ScreenItem("Fresh Food","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua, consectetur  consectetur adipiscing elit", R.drawable.img1));
-        mList.add(new ScreenItem("Fast Delivery","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua, consectetur  consectetur adipiscing elit", R.drawable.img2));
-        mList.add(new ScreenItem("Easy Payment","Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua, consectetur  consectetur adipiscing elit", R.drawable.img3));
+        mList.add(new ScreenItem("Reivew Chân Thật"," tất cả đồ ăn sẽ được đánh giá bởi những người dùng và cả những chuyên gia ẩm thực uy tín từ nhiều miền ẩm thực khác nhau", R.drawable.img1));
+        mList.add(new ScreenItem("Cập nhật nhanh chóng","review sẽ được cập nhật theo thời gian thực. Bạn sẽ thấy review của mình và những người dùng khác ngay lập tức khi bạn ấn nút", R.drawable.img_reivew3));
+        mList.add(new ScreenItem("Đa dạng món ăn","các món ăn được tổng hợp từ mọi miền trên đất nước. Hãy yên tâm rằng bạn sẽ luôn tìm thấy món ăn bạn cần ở đây", R.drawable.img_variety_food));
+        mList.add(new ScreenItem("Hãy Công Tâm","Dù ít hay nhiều thì lời review của bạn sẽ ảnh hưởng đến các những người dùng khác nên hãy tuân thủ tiêu chuẩn cộng đồng và hãy nghĩ kĩ trước khi đánh giá", R.drawable.img_congtam));
 
         // setup viewpager
         screenPager =findViewById(R.id.screen_viewpager);
@@ -120,9 +120,7 @@ public class IntroActivity extends AppCompatActivity {
                 //open main activity
                 Intent loginActivity = new Intent(getApplicationContext(),LoginActivity.class);
                 startActivity(loginActivity);
-                // also we need to save a boolean value to storage so next time when the user run the app
-                // we could know that he is already checked the intro screen activity
-                // i'm going to use shared preferences to that process
+             //hold data of user open the app for the first time
 //                savePrefsData();
                 finish();
             }
@@ -140,7 +138,7 @@ public class IntroActivity extends AppCompatActivity {
 
 
     }
-
+//block this code for represent purpose
 //    private boolean restorePrefData() {
 //        SharedPreferences pref = getApplicationContext().getSharedPreferences("myPrefs",MODE_PRIVATE);
 //        Boolean isIntroActivityOpnendBefore = pref.getBoolean("isIntroOpnend",false);
