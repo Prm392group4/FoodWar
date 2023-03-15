@@ -24,6 +24,7 @@ android {
         }
     }
     buildFeatures{
+        dataBinding true
         viewBinding true
     }
 
@@ -50,8 +51,7 @@ dependencies {
     annotationProcessor 'com.github.bumptech.glide:compiler:4.15.0'
     implementation 'com.github.clans:fab:1.6.4'
     implementation 'com.github.clans:fab:1.6.4'
-    //picasso
-    implementation 'com.squareup.picasso:picasso:2.8'
+
 
     def lottieVersion = "3.4.0"
     // load image from url
@@ -83,6 +83,8 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.github.denzcoskun:ImageSlideshow:0.1.0'
     implementation 'com.google.code.gson:gson:2.8.8'
+
+
 
 
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
