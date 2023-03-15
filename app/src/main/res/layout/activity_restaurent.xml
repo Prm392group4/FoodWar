@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".food_management.Restaurant">
+    tools:context=".food_management.RestaurantActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarRestaurant"
@@ -13,9 +13,10 @@
         android:background="#ff93a3"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:title="Restaurant" >
+        app:title="Restaurant">
 
     </androidx.appcompat.widget.Toolbar>
 
@@ -23,41 +24,49 @@
         android:id="@+id/img_restaurant"
         android:layout_width="match_parent"
         android:layout_height="280dp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbarRestaurant"
         app:srcCompat="@drawable/restaurant" />
 
     <TextView
-        android:id="@+id/textview_address"
+        android:id="@+id/textView_restaurant"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="10dp"
-        android:text="Thanh Xuân, Hà Nội"
+        android:paddingLeft="5dp"
+        android:text="Nhà hàng"
         android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/img_restaurant" />
 
     <TextView
-        android:id="@+id/textview_phone"
-        android:layout_width="match_parent"
+        android:id="@+id/textview_address"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingLeft="10dp"
+        android:paddingLeft="5dp"
+        android:text="Thanh Xuân, Hà Nội"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_restaurant" />
+
+    <TextView
+        android:id="@+id/textview_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingRight="5dp"
         android:text="0396123456"
         android:textColor="#F44336"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textview_address" />
+        app:layout_constraintTop_toBottomOf="@+id/textView_restaurant" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="409dp"
         android:layout_height="355dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginEnd="1dp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textview_phone" />
+        app:layout_constraintTop_toBottomOf="@+id/textview_address" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,8 +8,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.foodwar.R;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -50,9 +53,24 @@ public class FeedBack extends AppCompatActivity {
     private void pushData(){
         // Write a message to the database
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("FeedBack/1");
+        DatabaseReference myRef = database.getReference();
 
-        myRef.setValue(feedBack.getText().toString());
+        myRef.child("FeedBack").push().setValue(feedBack.getText().toString())
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        // Feedback saved successfully
+                        Toast.makeText(FeedBack.this, "Feedback submitted successfully", Toast.LENGTH_SHORT).show();
+                        finish();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        // Failed to save feedback
+                        Toast.makeText(FeedBack.this, "Failed to submit feedback", Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 
     private void readDatabase(){

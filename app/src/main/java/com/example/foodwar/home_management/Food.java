@@ -6,16 +6,18 @@ public class Food {
     private String image;
     private String category;
     private String price;
+    private String description;
 
     public Food() {
     }
 
-    public Food(String name, String des, String image, String category, String price) {
+    public Food(String name, String des, String image, String category, String price, String description) {
         this.name = name;
         this.des = des;
         this.image = image;
         this.category = category;
         this.price = price;
+        this.description = description;
     }
 
     public String getName() {
@@ -56,5 +58,13 @@ public class Food {
 
     public void setPrice(String price) {
         this.price = price;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

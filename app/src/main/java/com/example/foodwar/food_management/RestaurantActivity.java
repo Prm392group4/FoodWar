@@ -6,26 +6,30 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.foodwar.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 
-public class Restaurant extends AppCompatActivity {
+public class RestaurantActivity extends AppCompatActivity {
+    ImageView img_restaurant;
+    TextView textView_address, textView_phone, textView_restaurant;
     RecyclerView recyclerView;
     ArrayList<Food> listFood;
+    ArrayList<Restaurant> listRestaurant;
     FoodAdapter adapter;
 
     @Override
@@ -34,11 +38,12 @@ public class Restaurant extends AppCompatActivity {
         setContentView(R.layout.activity_restaurent);
         ActionToolBar();
         Init();
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(Restaurant.this, 1);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(RestaurantActivity.this, 1);
         recyclerView.setLayoutManager(gridLayoutManager);
         listFood = new ArrayList<>();
-        adapter = new FoodAdapter(Restaurant.this, listFood);
+        adapter = new FoodAdapter(RestaurantActivity.this, listFood);
         recyclerView.setAdapter(adapter);
+        getResFromRealTimeDatabase();
         getListFoodFromRealTimeDatabase();
     }
 
@@ -54,14 +59,35 @@ public class Restaurant extends AppCompatActivity {
             }
         });
     }
-
-    //get data from firebase
-    private void getListFoodFromRealTimeDatabase(){
+    //get restaurant information
+    private void getResFromRealTimeDatabase() {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("foods");
-        myRef.addValueEventListener(new ValueEventListener() {
+        DatabaseReference foods_ref = database.getReference("restaurants/1");
+        foods_ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    Restaurant restaurant = snapshot.getValue(Restaurant.class);
+                textView_address.setText(restaurant.getAddress());
+                textView_restaurant.setText(restaurant.getName());
+                textView_phone.setText(restaurant.getPhone());
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(RestaurantActivity.this, "load list food failed", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+    //get foods data from firebase
+    private void getListFoodFromRealTimeDatabase(){
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference foods_ref  = database.getReference("restaurants/1/foods");
+        foods_ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(listFood!=null){
+                    listFood.clear();
+                }
                 for (DataSnapshot dataSnapshot: snapshot.getChildren()) {
                     Food food = dataSnapshot.getValue(Food.class);
                     listFood.add(food);
@@ -71,12 +97,16 @@ public class Restaurant extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(Restaurant.this, "load list food failed", Toast.LENGTH_SHORT).show();
+                Toast.makeText(RestaurantActivity.this, "load list food failed", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     private void Init() {
         recyclerView = findViewById(R.id.recyclerView);
+        img_restaurant = findViewById(R.id.imageview_image);
+        textView_address = findViewById(R.id.textview_address);
+        textView_restaurant = findViewById(R.id.textView_restaurant);
+        textView_phone = findViewById(R.id.textview_phone);
     }
 }

@@ -29,7 +29,6 @@ public class DetailFood extends AppCompatActivity {
         textView_nameProduct = findViewById(R.id.textView_nameProduct);
         textView_description = findViewById(R.id.textView_description);
 
-
         Bundle bundle = getIntent().getExtras();
         if (bundle != null){
             textView_price.setText(bundle.getString("Price"));
@@ -40,7 +39,7 @@ public class DetailFood extends AppCompatActivity {
         imageView_restaurant.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(DetailFood.this,Restaurant.class);
+                Intent intent = new Intent(DetailFood.this, RestaurantActivity.class);
                 startActivity(intent);
             }
         });
