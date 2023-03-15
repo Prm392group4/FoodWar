@@ -48,7 +48,7 @@ public class FoodAdapter extends BaseAdapter {
         ImageView imageView = view.findViewById(R.id.foodImage);
         TextView textView = view.findViewById(R.id.foodName);
         TextView des = view.findViewById(R.id.description);
-        Glide.with(context).load(food.getImg()).into(imageView);
+        Glide.with(context).load(food.getImage()).into(imageView);
         textView.setText(food.getName());
         des.setText(food.getDes());
         return view;

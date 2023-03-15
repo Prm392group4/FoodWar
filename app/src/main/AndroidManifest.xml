@@ -83,10 +83,9 @@
         <activity android:name=".home_management.HomeActivity"
             android:theme="@style/Theme.FoodWar"
             >
-
         </activity>
         <activity android:name=".home_management.SearchActivity"></activity>
-
+        <activity android:name=".home_management.SearchByLocationActivity"></activity>
 
     </application>
 

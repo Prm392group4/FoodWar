@@ -19,12 +19,12 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
@@ -89,47 +89,47 @@ public class SearchActivity extends AppCompatActivity {
             }
         });
 
-//        // Search
-//        EditText editTextSearch = findViewById(R.id.searchEditText);
-//        editTextSearch.addTextChangedListener(new TextWatcher() {
-//            @Override
-//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-//
-//            }
-//
-//            @Override
-//            public void onTextChanged(CharSequence s, int start, int before, int count) {
-//                String keyword = s.toString().trim();
-//                Query query = foodsRef.orderByChild("name");
-//                query.addListenerForSingleValueEvent(new ValueEventListener() {
-//                    @Override
-//                    public void onDataChange(DataSnapshot dataSnapshot) {
-//                        if (gridView == null || foodAdapter == null)
-//                            return; // Check null before updating data
-//                        List<Food> searchResults = new ArrayList<>();
-//                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-//                            // Convert DataSnapshot to Food object and add it to the results list
-//                            Food food = snapshot.getValue(Food.class);
-//                            searchResults.add(food);
-//                        }
-//                        // Display the search results in the GridView
-//                        foods.clear(); // Clear the existing data in the foods list before adding new data
-//                        foods.addAll(searchResults);
-//                        foodAdapter.notifyDataSetChanged(); // Notify the adapter that the data has changed
-//                        Log.d("SearchResults", searchResults.toString());
-//                    }
-//
-//                    @Override
-//                    public void onCancelled(DatabaseError databaseError) {
-//                        Log.w("SearchActivity", "searchFoods:onCancelled", databaseError.toException());
-//                    }
-//                });
-//            }
-//
-//            @Override
-//            public void afterTextChanged(Editable s) {
-//
-//            }
-//        });
+        // Search
+        EditText editTextSearch = findViewById(R.id.searchEditText);
+        editTextSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                String keyword = s.toString().trim();
+                Query query = foodsRef.orderByChild("name").startAt(keyword).endAt(keyword + "\uf8ff");
+                query.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        if (gridView == null || foodAdapter == null)
+                            return; // Check null before updating data
+                        List<Food> searchResults = new ArrayList<>();
+                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                            // Convert DataSnapshot to Food object and add it to the results list
+                            Food food = snapshot.getValue(Food.class);
+                            searchResults.add(food);
+                        }
+                        // Display the search results in the GridView
+                        foods.clear(); // Clear the existing data in the foods list before adding new data
+                        foods.addAll(searchResults);
+                        foodAdapter.notifyDataSetChanged(); // Notify the adapter that the data has changed
+                        Log.d("SearchResults", searchResults.toString());
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        Log.w("SearchActivity", "searchFoods:onCancelled", databaseError.toException());
+                    }
+                });
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
     }
 }

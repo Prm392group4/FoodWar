@@ -159,7 +159,7 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
             public void onDataChange(DataSnapshot dataSnapshot) {
                 slideModels.clear(); // Clear the existing data in the slideModels list before adding new data
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    String url = snapshot.child("img").getValue(String.class);
+                    String url = snapshot.child("image").getValue(String.class);
                     slideModels.add(new SlideModel(url, ScaleTypes.FIT));
                 }
                 imageSlider.setImageList(slideModels, ScaleTypes.FIT);

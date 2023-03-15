@@ -3,17 +3,19 @@ package com.example.foodwar.home_management;
 public class Food {
     private String name;
     private String des;
-    private String img;
+    private String image;
     private String category;
+    private String price;
 
     public Food() {
     }
 
-    public Food(String name, String des, String img, String category) {
+    public Food(String name, String des, String image, String category, String price) {
         this.name = name;
         this.des = des;
-        this.img = img;
+        this.image = image;
         this.category = category;
+        this.price = price;
     }
 
     public String getName() {
@@ -32,12 +34,12 @@ public class Food {
         this.des = des;
     }
 
-    public String getImg() {
-        return img;
+    public String getImage() {
+        return image;
     }
 
-    public void setImg(String img) {
-        this.img = img;
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public String getCategory() {
@@ -46,5 +48,13 @@ public class Food {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
     }
 }
