@@ -10,7 +10,7 @@
         android:id="@+id/toolBar_feedBack"
         android:layout_width="409dp"
         android:layout_height="wrap_content"
-        android:background="@color/teal_200"
+        android:background="#ff93a3"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,7 +21,7 @@
         app:titleTextColor="#151414" />
 
     <EditText
-        android:id="@+id/editTextTextMultiLine"
+        android:id="@+id/feedBack"
         android:layout_width="320dp"
         android:layout_height="100dp"
         android:layout_marginTop="176dp"
@@ -43,10 +43,10 @@
         android:layout_marginTop="34dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine" />
+        app:layout_constraintTop_toBottomOf="@+id/feedBack" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/submit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"

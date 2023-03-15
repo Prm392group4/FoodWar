@@ -1,41 +1,48 @@
 package com.example.foodwar.food_management;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.foodwar.R;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
 
 public class Restaurant extends AppCompatActivity {
-    ListView listView_food;
-    ArrayList<Food> foods;
+    RecyclerView recyclerView;
+    ArrayList<Food> listFood;
     FoodAdapter adapter;
-    ImageView imageView_feedBack;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurent);
         ActionToolBar();
         Init();
-        LoadData();
-        imageView_feedBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Restaurant.this,FeedBack.class);
-                startActivity(intent);
-            }
-        });
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(Restaurant.this, 1);
+        recyclerView.setLayoutManager(gridLayoutManager);
+        listFood = new ArrayList<>();
+        adapter = new FoodAdapter(Restaurant.this, listFood);
+        recyclerView.setAdapter(adapter);
+        getListFoodFromRealTimeDatabase();
     }
 
-
+    //Create back button
     private void ActionToolBar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbarRestaurant);
         setSupportActionBar(toolbar);
@@ -48,17 +55,28 @@ public class Restaurant extends AppCompatActivity {
         });
     }
 
-    private void LoadData() {
-        adapter = new FoodAdapter(this,R.layout.activity_row_food,foods);
-        listView_food.setAdapter(adapter);
+    //get data from firebase
+    private void getListFoodFromRealTimeDatabase(){
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("foods");
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot: snapshot.getChildren()) {
+                    Food food = dataSnapshot.getValue(Food.class);
+                    listFood.add(food);
+                }
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(Restaurant.this, "load list food failed", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void Init() {
-        imageView_feedBack = findViewById(R.id.imageView_feedBack);
-        listView_food = findViewById(R.id.listView_food);
-        foods =new ArrayList<>();
-        foods.add(new Food("Banh ngot","23000đ",R.drawable.img_food));
-        foods.add(new Food("Banh ngot","23000đ",R.drawable.img_food));
-        foods.add(new Food("Banh ngot","23000đ",R.drawable.img_food));
+        recyclerView = findViewById(R.id.recyclerView);
     }
 }

@@ -9,22 +9,34 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolBar_detailFood"
-        android:layout_width="409dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/teal_200"
+        android:background="#ff93a3"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:title="Detail Food"
-        app:titleTextColor="#151414">
+        app:title="Detail Food">
 
         <FrameLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:translationX="180dp"
+            android:translationX="120dp"
+            tools:layout_editor_absoluteX="126dp"
+            tools:layout_editor_absoluteY="3dp">
+
+            <ImageView
+                android:id="@+id/imageView_feedBack"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="10dp"
+                app:srcCompat="@drawable/feedback_icon" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:translationX="135dp"
             tools:layout_editor_absoluteX="126dp"
             tools:layout_editor_absoluteY="3dp">
 
@@ -58,7 +70,7 @@
             app:srcCompat="@drawable/img_food" />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/textView_price"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="500.000đ"
