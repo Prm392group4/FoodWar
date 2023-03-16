@@ -1,18 +1,37 @@
 package com.example.foodwar.food_management;
 
 public class Food {
-    private String image;
     private String name;
-    private String price;
     private String description;
-
+    private String image;
+    private String category;
+    private String price;
+    private String restaurant;
     public Food() {
     }
 
-    public Food(String image, String name, String price, String description) {
-        this.image = image;
+    public Food(String name, String description, String image, String category, String price, String restaurant) {
         this.name = name;
+        this.description = description;
+        this.image = image;
+        this.category = category;
         this.price = price;
+        this.restaurant = restaurant;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
         this.description = description;
     }
 
@@ -24,12 +43,12 @@ public class Food {
         this.image = image;
     }
 
-    public String getName() {
-        return name;
+    public String getCategory() {
+        return category;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public String getPrice() {
@@ -40,21 +59,11 @@ public class Food {
         this.price = price;
     }
 
-    public String getDescription() {
-        return description;
+    public String getRestaurant() {
+        return restaurant;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    @Override
-    public String toString() {
-        return "Food{" +
-                "image='" + image + '\'' +
-                ", name='" + name + '\'' +
-                ", price='" + price + '\'' +
-                ", description='" + description + '\'' +
-                '}';
+    public void setRestaurant(String restaurant) {
+        this.restaurant = restaurant;
     }
 }

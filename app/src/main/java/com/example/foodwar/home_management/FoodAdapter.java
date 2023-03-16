@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.foodwar.R;
+import com.example.foodwar.food_management.Food;
 
 import java.util.List;
 

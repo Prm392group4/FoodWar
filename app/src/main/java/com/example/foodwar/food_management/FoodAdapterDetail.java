@@ -13,10 +13,8 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foodwar.R;
-import com.example.foodwar.home_management.Food;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class FoodAdapterDetail extends RecyclerView.Adapter<FoodAdapterDetail.FoodViewHolder> {
 
