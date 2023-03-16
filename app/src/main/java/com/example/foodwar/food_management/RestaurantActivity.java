@@ -6,6 +6,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -43,6 +45,15 @@ public class RestaurantActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         getResFromRealTimeDatabase();
         getListFoodFromRealTimeDatabase();
+        // ấn số điện thoại sẽ chuyển qua gọi
+        textView_phone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String phoneNumber = textView_phone.getText().toString();
+                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phoneNumber, null));
+                startActivity(intent);
+            }
+        });
     }
 
     //Create back button
