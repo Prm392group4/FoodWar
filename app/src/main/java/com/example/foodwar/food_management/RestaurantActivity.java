@@ -54,6 +54,16 @@ public class RestaurantActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        // ấn vào địa chỉ sẽ sang map
+        textView_address.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String address = ((TextView) view).getText().toString();
+                Uri uri = Uri.parse("geo:0,0?q=" + address);
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
+            }
+        });
     }
 
     //Create back button
