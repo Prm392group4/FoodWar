@@ -22,10 +22,10 @@
         android:textSize="10sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.98"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.161"
+        app:layout_constraintVertical_bias="0.579"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -35,61 +35,61 @@
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:text="Count Like"
-        android:textSize="24dp"
         android:textAlignment="center"
         android:textColor="@color/btnred"
+        android:textSize="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.205"
+        app:layout_constraintHorizontal_bias="0.101"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.588"
+        app:layout_constraintVertical_bias="0.572"
         tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/buttonLike"
         android:layout_width="wrap_content"
         android:layout_height="39dp"
-        android:text="Like"
         android:background="@drawable/main_border"
+        android:text="Like"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.241"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.82" />
+        app:layout_constraintVertical_bias="0.852" />
 
     <TextView
         android:id="@+id/detailDesc"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="286dp"
+        android:layout_height="106dp"
         android:layout_gravity="center"
         android:background="@drawable/main_border"
         android:padding="10dp"
         android:text="Description"
         android:textColor="@color/main"
-        android:textSize="10sp"
+        android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.645"
+        app:layout_constraintVertical_bias="0.741"
         tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/buttonUnLike"
         android:layout_width="wrap_content"
         android:layout_height="39dp"
-        android:text="DisLike"
         android:background="@drawable/main_border"
         android:backgroundTint="@color/gradient_end_color"
+        android:text="DisLike"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.755"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.82"
+        app:layout_constraintVertical_bias="0.852"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -127,16 +127,29 @@
         app:layout_constraintVertical_bias="0.297"
         tools:ignore="MissingConstraints" />
 
+    <ImageButton
+        android:id="@+id/backButton"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_weight="1"
+        android:background="@color/white"
+        android:src="@drawable/ic_home_but"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.114"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.064" />
+
     <TextView
         android:id="@+id/detailTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:background="@drawable/main_border"
         android:padding="5dp"
         android:text="Title"
         android:textColor="@color/main"
-        android:textSize="18sp"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"

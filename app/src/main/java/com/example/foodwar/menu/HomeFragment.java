@@ -13,13 +13,11 @@ import com.example.foodwar.home_management.HomeActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class HomeFragment extends Fragment {
-    Button  btncup;
-    FloatingActionButton add;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        View view = inflater.inflate(R.layout.activity_home_main, container, false);
+        View view = inflater.inflate(R.layout.home_review, container, false);
         Intent intent = new Intent(view.getContext(), HomeActivity.class);
         startActivity(intent);
         return view;

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -19,6 +20,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.foodwar.R;
+import com.example.foodwar.home_management.HomeActivity;
+import com.example.foodwar.user_management.UserProfileMain;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -35,6 +38,7 @@ import java.util.Calendar;
 public class MainupBlogsItems extends AppCompatActivity {
     ImageView uploadImage;
     Button saveButton;
+    ImageButton backButton2;
     EditText upLoadTopic, upLoadDesc, upLoadAuthor;
     String imageURL;
     Uri uri;
@@ -48,6 +52,7 @@ public class MainupBlogsItems extends AppCompatActivity {
         upLoadTopic = findViewById(R.id.uploadTopic);
         upLoadAuthor = findViewById(R.id.uploadAuthor);
         saveButton = findViewById(R.id.saveButton);
+        backButton2= findViewById(R.id.backButton2);
         ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),
                 new ActivityResultCallback<ActivityResult>() {
@@ -64,6 +69,14 @@ public class MainupBlogsItems extends AppCompatActivity {
                 }
         );
 
+        backButton2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainupBlogsItems.this, HomeActivity.class);
+                startActivity(intent);
+
+            }
+        });
         uploadImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

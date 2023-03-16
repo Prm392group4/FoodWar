@@ -9,6 +9,7 @@
     android:background="@drawable/bg_main"
     tools:context=".blogs_management.MainupBlogsItems">
 
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -31,10 +32,17 @@
                 android:layout_height="wrap_content"
                 android:text="Upload Data Blogs"
                 android:padding="5dp"
-                android:background="@drawable/main_border"
                 android:textSize="30sp"
                 android:textAlignment="center"
                 android:textColor="@color/main"/>
+            <ImageButton
+                android:id="@+id/backButton2"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:src="@drawable/ic_home_but" />
+
 
             <ImageView
                 android:layout_width="match_parent"

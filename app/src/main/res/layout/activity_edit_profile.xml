@@ -22,16 +22,22 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_gravity="center_horizontal"
-            android:padding="24dp"
-            android:background="@drawable/bg_main">
+            android:padding="24dp">
 
+            <ImageButton
+                android:id="@+id/backButton"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:src="@drawable/ic_home_but" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Edit Profile"
                 android:textAlignment="center"
-                android:textColor="@color/colorPrimaryDark"
+                android:textColor="@color/black"
                 android:textSize="36sp"
                 android:textStyle="bold" />
 
@@ -42,7 +48,7 @@
                 android:padding="8dp"
                 android:layout_marginTop="2dp"
                 android:layout_marginBottom="10dp"
-                android:background="@drawable/bg_main"
+                android:background="@drawable/white_app_name"
                 android:layout_gravity="center"
                 android:src="@drawable/image_profile"
                 android:scaleType="centerCrop"/>

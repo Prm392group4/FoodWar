@@ -11,12 +11,15 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.foodwar.R;
+import com.example.foodwar.home_management.HomeActivity;
+import com.example.foodwar.user_management.UserProfileMain;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
@@ -40,6 +43,7 @@ public class DetailActivityBlogs extends AppCompatActivity {
     ImageView detailImage;
     int likeCount = 0;
     Button likeButton, dislikebutton;
+    ImageButton btnBack;
     String imageURL = "";
     String key = "";
 
@@ -56,6 +60,7 @@ public class DetailActivityBlogs extends AppCompatActivity {
         author = findViewById(R.id.authorItems);
         likeButton = findViewById(R.id.buttonLike);
         dislikebutton= findViewById(R.id.buttonUnLike);
+        btnBack= findViewById(R.id.backButton);
 
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
@@ -95,6 +100,14 @@ public class DetailActivityBlogs extends AppCompatActivity {
 
             }
         });
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(DetailActivityBlogs.this, HomeActivity.class);
+                startActivity(intent);
+
+            }
+        });
 
         likeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,10 +118,10 @@ public class DetailActivityBlogs extends AppCompatActivity {
                 myRef.child("like").addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        // Lấy giá trị hiện tại của lượt thích (like)
+                        // Lấy giá trị hiện tại của lượt thích
                         Integer currentLikes = dataSnapshot.getValue(Integer.class);
 
-                        // Cập nhật giá trị mới cho lượt thích (like)
+                        // Cập nhật giá trị mới cho lượt thích
                         myRef.child("like").setValue(currentLikes + 1);
                         likecount.setText(String.valueOf(currentLikes + 1 +" Like"));
 

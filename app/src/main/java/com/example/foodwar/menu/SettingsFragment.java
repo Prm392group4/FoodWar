@@ -17,8 +17,8 @@ public class SettingsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         View view =inflater.inflate(R.layout.fragment_settings, container, false);
-        Intent intent =  new Intent(view.getContext(), MainDarkMode.class);
-        startActivity(intent);
+//        Intent intent =  new Intent(view.getContext(), MainDarkMode.class);
+//        startActivity(intent);
 
         return view;
     }

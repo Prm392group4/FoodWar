@@ -19,8 +19,8 @@
 
         <item
             android:id="@+id/nav_share"
-            android:icon="@drawable/ic_home"
-            android:title="Add"/>
+            android:icon="@drawable/ic_help"
+            android:title="help"/>
 
         <item
             android:id="@+id/nav_about"

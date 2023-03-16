@@ -32,6 +32,7 @@ import com.example.foodwar.blogs_management.MainActivityBlogs;
 import com.example.foodwar.blogs_management.MainupBlogsItems;
 import com.example.foodwar.food_management.Food;
 import com.example.foodwar.food_management.Restaurant;
+import com.example.foodwar.menu.MainMenu;
 import com.example.foodwar.user_management.UserProfileMain;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
@@ -137,7 +138,7 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
 
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                Intent intent = new Intent(getApplicationContext(), MainMenu.class);
                 startActivity(intent);
                 finish();
             }
