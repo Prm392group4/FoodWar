@@ -73,6 +73,7 @@ public class RestaurantActivity extends AppCompatActivity {
                 textView_address.setText(restaurant.getAddress());
                 textView_restaurant.setText(restaurant.getName());
                 textView_phone.setText(restaurant.getPhone());
+//                Glide.with(RestaurantActivity.this).load(restaurant.getImage()).into(img_restaurant);
             }
 
             @Override

@@ -32,7 +32,7 @@ import com.example.foodwar.R;
 import com.example.foodwar.blogs_management.MainActivityBlogs;
 import com.example.foodwar.blogs_management.MainupBlogsItems;
 import com.example.foodwar.food_management.DetailFood;
-import com.example.foodwar.food_management.FoodDetail;
+import com.example.foodwar.home_management.Food;
 import com.example.foodwar.food_management.Restaurant;
 import com.example.foodwar.user_management.UserProfileMain;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;

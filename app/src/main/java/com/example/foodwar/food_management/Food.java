@@ -1,15 +1,15 @@
 package com.example.foodwar.food_management;
 
-public class FoodDetail {
+public class Food {
     private String image;
     private String name;
     private String price;
     private String description;
 
-    public FoodDetail() {
+    public Food() {
     }
 
-    public FoodDetail(String image, String name, String price, String description) {
+    public Food(String image, String name, String price, String description) {
         this.image = image;
         this.name = name;
         this.price = price;

@@ -82,7 +82,7 @@ public class FeedBackActivity extends AppCompatActivity {
                         }
                     });
         }else{
-            Toast.makeText(FeedBackActivity.this, "Fill in FeedBack", Toast.LENGTH_SHORT).show();
+            Toast.makeText(FeedBackActivity.this, "Fill in FeedBack or Rate Star", Toast.LENGTH_SHORT).show();
         }
     }
 

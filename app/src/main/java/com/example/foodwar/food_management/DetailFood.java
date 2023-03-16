@@ -21,42 +21,21 @@ public class DetailFood extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_food);
         ActionToolBar();
+        init();
 
-        imageView = findViewById(R.id.detail_imageView);
-        textView_nameProduct = findViewById(R.id.textView_nameProduct);
-        textView_price = findViewById(R.id.detail_textView_price);
-        textView_description = findViewById(R.id.textView_description);
-//        textView_category = findViewById(R.id.home_food_detail_cat);
-//        textView_restaurant = findViewById(R.id.home_food_detail_res);
-        // Lấy dữ liệu được truyền từ Intent
-        Intent intent = getIntent();
-        String name = intent.getStringExtra("name");
-        String image = intent.getStringExtra("image");
-        String des = intent.getStringExtra("des");
-//        String id = intent.getStringExtra("id");
-//        String category = intent.getStringExtra("category");
-        String price = intent.getStringExtra("price");
-//        String restaurant = intent.getStringExtra("restaurant");
-
-        // Hiển thị thông tin chi tiết lên màn hình
-        textView_nameProduct.setText(name);
-        textView_description.setText(des);
-        Glide.with(this).load(image).into(imageView);
-//        textView_category.setText(category);
-//        textView_restaurant.setText(restaurant);
-        textView_price.setText(price);
-
-
-
-
-
-        imageView_restaurant = findViewById(R.id.imageview_restaurant);
-        imageView_feedBack = findViewById(R.id.imageView_feedBack);
-
-        imageView = findViewById(R.id.detail_imageView);
-        textView_price = findViewById(R.id.detail_textView_price);
-        textView_nameProduct = findViewById(R.id.textView_nameProduct);
-        textView_description = findViewById(R.id.textView_description);
+//        // Lấy dữ liệu được truyền từ Intent
+//        Intent intent = getIntent();
+//        String name = intent.getStringExtra("name");
+//        String image = intent.getStringExtra("image");
+//        String des = intent.getStringExtra("des");
+//        String price = intent.getStringExtra("price");
+//
+//
+//        // Hiển thị thông tin chi tiết lên màn hình
+//        textView_nameProduct.setText(name);
+//        textView_description.setText(des);
+//        Glide.with(this).load(image).into(imageView);
+//        textView_price.setText(price);
 
         Bundle bundle = getIntent().getExtras();
         if (bundle != null){
@@ -84,6 +63,14 @@ public class DetailFood extends AppCompatActivity {
 
     }
 
+    private void init(){
+        imageView = findViewById(R.id.detail_imageView);
+        textView_nameProduct = findViewById(R.id.textView_nameProduct);
+        textView_price = findViewById(R.id.detail_textView_price);
+        textView_description = findViewById(R.id.textView_description);
+        imageView_restaurant = findViewById(R.id.imageview_restaurant);
+        imageView_feedBack = findViewById(R.id.imageView_feedBack);
+    }
     //create back button
     private void ActionToolBar() {
         toolbar = findViewById(R.id.toolBar_detailFood);

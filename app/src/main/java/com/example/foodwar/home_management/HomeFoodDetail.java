@@ -22,8 +22,7 @@ import com.example.foodwar.food_management.RestaurantActivity;
 public class HomeFoodDetail extends AppCompatActivity {
     Toolbar toolbar;
     ImageView imageView_restaurant, imageView_feedBack, imageView;
-    TextView textView_price, textView_nameProduct, textView_description,
-    textView_category,textView_restaurant ;
+    TextView textView_price, textView_nameProduct, textView_description;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,23 +33,17 @@ public class HomeFoodDetail extends AppCompatActivity {
         textView_nameProduct = findViewById(R.id.home_food_detail_name);
         textView_price = findViewById(R.id.home_food_detail_price);
         textView_description = findViewById(R.id.home_food_detail_des);
-        textView_category = findViewById(R.id.home_food_detail_cat);
-        textView_restaurant = findViewById(R.id.home_food_detail_res);
         // Lấy dữ liệu được truyền từ Intent
         Intent intent = getIntent();
         String name = intent.getStringExtra("name");
         String image = intent.getStringExtra("image");
         String description = intent.getStringExtra("description");
-        String category = intent.getStringExtra("category");
         String price = intent.getStringExtra("price");
-        String restaurant = intent.getStringExtra("restaurant");
 
         // Hiển thị thông tin chi tiết lên màn hình
         textView_nameProduct.setText(name);
         textView_description.setText(description);
         Glide.with(this).load(image).into(imageView);
-        textView_category.setText(category);
-        textView_restaurant.setText(restaurant);
         textView_price.setText(price);
 
         imageView_restaurant = findViewById(R.id.imageview_restaurant);
