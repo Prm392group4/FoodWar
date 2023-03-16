@@ -62,7 +62,7 @@
         app:layout_constraintTop_toBottomOf="@+id/toolBar_detailFood">
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/detail_imageView"
             android:layout_width="match_parent"
             android:layout_height="280dp"
             android:scaleType="fitXY"
@@ -75,7 +75,6 @@
             android:id="@+id/detail_textView_price"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="500.000đ"
             android:textAlignment="center"
             android:textColor="#FFC107"
             android:textSize="16sp" />
@@ -85,7 +84,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="10dp"
-            android:text="Tên Sản Phẩm"
             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
             android:textSize="24sp"
             android:textStyle="bold" />
@@ -133,7 +131,6 @@
                 android:layout_height="wrap_content"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
-                android:text="Chi tiết sản phẩm. Ngon . Bổ. Rẻ."
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />

@@ -3,6 +3,7 @@ package com.example.foodwar.home_management;
 import static android.content.ContentValues.TAG;
 
 import android.Manifest;
+import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -31,12 +32,15 @@ import com.example.foodwar.R;
 import com.example.foodwar.blogs_management.MainActivityBlogs;
 import com.example.foodwar.blogs_management.MainupBlogsItems;
 import com.example.foodwar.food_management.DetailFood;
+import com.example.foodwar.food_management.FoodDetail;
+import com.example.foodwar.food_management.Restaurant;
 import com.example.foodwar.user_management.UserProfileMain;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.io.IOException;
@@ -49,11 +53,12 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
     //menu
 
     //
+
     private GridView gridView;
     private List<Food> foods = new ArrayList<>();
     private FoodAdapter foodAdapter;
     private Button food_bnt, drink_btn, fruit_btn;
-    private ImageButton btn_blogs ,btnBack;
+    private ImageButton btn_blogs ;
     private ImageButton btnuserProfile;
     private FloatingActionButton btn_blog_float_add;
 
@@ -119,11 +124,12 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
         btn_location.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String myData = ((Button)v).getText().toString();
                 Intent intent = new Intent(HomeActivity.this, SearchByLocationActivity.class);
+                intent.putExtra("data", myData);
                 startActivity(intent);
             }
         });
-
 
 
         // Back to privious
@@ -139,21 +145,49 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
             }
         });
 
+        // Go to fooddetail
+        gridView = findViewById(R.id.foodGridView);
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Food food = (Food) parent.getItemAtPosition(position);
+                Intent intent = new Intent(HomeActivity.this, HomeFoodDetail.class);
+                intent.putExtra("name", food.getName());
+                intent.putExtra("image", food.getImage());
+                intent.putExtra("description",food.getDescription());
+                intent.putExtra("category",food.getCategory());
+                intent.putExtra("price",food.getPrice());
+                intent.putExtra("restaurant",food.getRestaurant());
+                startActivity(intent);
+            }
+        });
 
-        //img slide
+
         imageSlider = findViewById(R.id.home_imgslideshow);
         ArrayList<SlideModel> slideModels = new ArrayList<>();
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference slidesRef = database.getReference("foods");
+        DatabaseReference slidesRef = database.getReference("restaurants");
 
-        slidesRef.orderByChild("order").addValueEventListener(new ValueEventListener() {
+        Query query = slidesRef.orderByChild("rate").equalTo(5.0).limitToFirst(5);
+        query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 slideModels.clear(); // Clear the existing data in the slideModels list before adding new data
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     String url = snapshot.child("image").getValue(String.class);
                     slideModels.add(new SlideModel(url, ScaleTypes.FIT));
+
+                    imageSlider.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            String imageslide = slideModels.toString();
+                            Intent intent = new Intent(HomeActivity.this, Restaurant.class);
+                            intent.putExtra("data", imageslide);
+                            startActivity(intent);
+                        }
+                    });
+
                 }
                 imageSlider.setImageList(slideModels, ScaleTypes.FIT);
             }
@@ -164,6 +198,7 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
                 Toast.makeText(HomeActivity.this, "can not load img", Toast.LENGTH_SHORT).show();
             }
         });
+
 
 
         // Show all foods
@@ -233,9 +268,6 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
                     }
                 });
             }
-
-
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 // Failed to read value
@@ -243,16 +275,6 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
             }
         });
 
-
-        // Go to foods details
-        GridView gr = findViewById(R.id.foodGridView);
-        gr.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(HomeActivity.this, DetailFood.class);
-                startActivity(intent);
-            }
-        });
 
         // Hiển Thị khu vực hiện tại.
         locationTextView = findViewById(R.id.home_btn_location);
@@ -313,7 +335,7 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
             if (addresses.size() > 0) {
                 Address address = addresses.get(0);
                 String state = address.getAdminArea();
-                String addressText ="Tp."+ state ;
+                String addressText =state ;
                 locationTextView.setText(addressText);
             }
         } catch (IOException e) {

@@ -13,15 +13,17 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.foodwar.R;
+import com.example.foodwar.home_management.Food;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder> {
+public class FoodAdapterDetail extends RecyclerView.Adapter<FoodAdapterDetail.FoodViewHolder> {
 
     private Context context;
-    private List<Food> listFood;
+    private ArrayList<Food> listFood;
 
-    public FoodAdapter(Context context, List<Food> listFood) {
+    public FoodAdapterDetail(Context context, ArrayList<Food> listFood) {
         this.context = context;
         this.listFood = listFood;
     }

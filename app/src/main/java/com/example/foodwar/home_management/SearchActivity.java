@@ -7,6 +7,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageButton;
@@ -55,6 +56,24 @@ public class SearchActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        // Go to fooddetail
+        gridView = findViewById(R.id.foodGridView);
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Food food = (Food) parent.getItemAtPosition(position);
+                Intent intent = new Intent(SearchActivity.this, HomeFoodDetail.class);
+                intent.putExtra("name", food.getName());
+                intent.putExtra("image", food.getImage());
+                intent.putExtra("description",food.getDescription());
+                intent.putExtra("category",food.getCategory());
+                intent.putExtra("price",food.getPrice());
+                intent.putExtra("restaurant",food.getRestaurant());
+                startActivity(intent);
+            }
+        });
+
         // Back to home
         ImageButton btn_home = findViewById(R.id.homeButton);
         btn_home.setOnClickListener(new View.OnClickListener() {

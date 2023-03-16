@@ -14,6 +14,9 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.foodwar.R;
+import com.example.foodwar.home_management.Food;
+import com.example.foodwar.food_management.FoodAdapterDetail;
+import com.example.foodwar.home_management.FoodAdapter;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,7 +33,7 @@ public class RestaurantActivity extends AppCompatActivity {
     RecyclerView recyclerView;
     ArrayList<Food> listFood;
     ArrayList<Restaurant> listRestaurant;
-    FoodAdapter adapter;
+    FoodAdapterDetail adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +44,7 @@ public class RestaurantActivity extends AppCompatActivity {
         GridLayoutManager gridLayoutManager = new GridLayoutManager(RestaurantActivity.this, 1);
         recyclerView.setLayoutManager(gridLayoutManager);
         listFood = new ArrayList<>();
-        adapter = new FoodAdapter(RestaurantActivity.this, listFood);
+        adapter = new FoodAdapterDetail(RestaurantActivity.this, listFood);
         recyclerView.setAdapter(adapter);
         getResFromRealTimeDatabase();
         getListFoodFromRealTimeDatabase();

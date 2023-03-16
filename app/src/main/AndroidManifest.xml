@@ -84,39 +84,12 @@
             android:theme="@style/Theme.FoodWar"
             >
         </activity>
-        <activity
-            android:name=".admin_activity.FoodActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".admin_activity.StoreActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".admin_activity.EditUserActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".admin_activity.UserActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
         <activity android:name=".home_management.SearchActivity"></activity>
         <activity android:name=".home_management.SearchByLocationActivity"></activity>
         <activity android:name=".food_management.DetailFood"></activity>
         <activity android:name=".food_management.RestaurantActivity"></activity>
         <activity android:name=".food_management.FeedBackActivity"></activity>
+        <activity android:name=".home_management.HomeFoodDetail"></activity>
     </application>
 
 </manifest>

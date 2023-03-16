@@ -20,18 +20,20 @@
 
     <TextView
         android:id="@+id/foodName"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:maxLines="2"
         android:textStyle="bold"
         android:textColor="#333333"
         android:textSize="18sp" />
 
     <TextView
         android:id="@+id/description"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
+        android:textAlignment="textStart"
+        android:maxLines="3"
         android:textColor="#333333"
         android:textSize="14sp" />
 

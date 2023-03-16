@@ -2,22 +2,21 @@ package com.example.foodwar.home_management;
 
 public class Food {
     private String name;
-    private String des;
+    private String description;
     private String image;
     private String category;
     private String price;
-    private String description;
-
+    private String restaurant;
     public Food() {
     }
 
-    public Food(String name, String des, String image, String category, String price, String description) {
+    public Food(String name, String description, String image, String category, String price, String restaurant) {
         this.name = name;
-        this.des = des;
+        this.description = description;
         this.image = image;
         this.category = category;
         this.price = price;
-        this.description = description;
+        this.restaurant = restaurant;
     }
 
     public String getName() {
@@ -28,12 +27,12 @@ public class Food {
         this.name = name;
     }
 
-    public String getDes() {
-        return des;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDes(String des) {
-        this.des = des;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getImage() {
@@ -60,11 +59,11 @@ public class Food {
         this.price = price;
     }
 
-    public String getDescription() {
-        return description;
+    public String getRestaurant() {
+        return restaurant;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setRestaurant(String restaurant) {
+        this.restaurant = restaurant;
     }
 }

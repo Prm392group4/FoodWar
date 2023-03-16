@@ -77,15 +77,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:background="@color/white"
+        android:background="#F8F0F0"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
         android:orientation="horizontal">
         <ImageButton
             android:id="@+id/backButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/white"
+            android:background="#F8F0F0"
             android:layout_weight="1"
             android:src="@drawable/ic_home_but" />
 
@@ -93,7 +92,7 @@
         <ImageButton
             android:id="@+id/homeButton"
             android:layout_width="wrap_content"
-            android:background="@color/white"
+            android:background="#F8F0F0"
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_home" />
@@ -104,7 +103,7 @@
             android:id="@+id/search_profileButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/white"
+            android:background="#F8F0F0"
             android:layout_weight="1"
             android:src="@drawable/ic_account_circle" />
     </LinearLayout>

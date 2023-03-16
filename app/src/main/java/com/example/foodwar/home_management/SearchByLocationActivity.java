@@ -10,7 +10,13 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.EditText;
+import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,8 +25,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import com.example.foodwar.R;
 import com.example.foodwar.user_management.UserProfileMain;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -31,6 +44,10 @@ public class SearchByLocationActivity extends AppCompatActivity implements
     private static final int PERMISSION_REQUEST_LOCATION = 1;
     private TextView locationTextView;
     private LocationManager locationManager;
+    private GridView gridView;
+    private FoodAdapter foodAdapter;
+    private List<Food> foods = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +55,71 @@ public class SearchByLocationActivity extends AppCompatActivity implements
         setContentView(R.layout.activity_foods_search_location);
         locationTextView = findViewById(R.id.location_text_view);
 
+        // Go to fooddetail
+        gridView = findViewById(R.id.locationGridview);
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Food food = (Food) parent.getItemAtPosition(position);
+                Intent intent = new Intent(SearchByLocationActivity.this, HomeFoodDetail.class);
+                intent.putExtra("name", food.getName());
+                intent.putExtra("image", food.getImage());
+                intent.putExtra("description",food.getDescription());
+                intent.putExtra("category",food.getCategory());
+                intent.putExtra("price",food.getPrice());
+                intent.putExtra("restaurant",food.getRestaurant());
+                startActivity(intent);
+            }
+        });
+
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            String data = extras.getString("data");
+            gridView = findViewById(R.id.locationGridview);
+            foodAdapter = new FoodAdapter(this, foods);
+            gridView.setAdapter(foodAdapter);
+
+            FirebaseDatabase database = FirebaseDatabase.getInstance();
+            DatabaseReference restaurantsRef = database.getReference("restaurants");
+            DatabaseReference foodsRef = database.getReference("foods");
+            Query query = restaurantsRef.orderByChild("address").equalTo(data);
+            query.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    List<String> restaurantIds = new ArrayList<>();
+                    for (DataSnapshot restaurantSnapshot : dataSnapshot.getChildren()) {
+                        String restaurantId = restaurantSnapshot.getKey();
+                        restaurantIds.add(restaurantId);
+                        Log.d("TAG", "Danh sach nha hang " +  restaurantIds);
+                    }
+                    Query query = foodsRef.orderByChild("resID").equalTo(1);
+                    query.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            Log.d("TAG", "Number of child nodes: " + dataSnapshot.getChildrenCount());
+                            for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                                Food food = snapshot.getValue(Food.class);
+                                foods.add(food);
+                                Log.d("TAG", "danh sách foods: " + foods);
+                            }
+                            foodAdapter.notifyDataSetChanged(); // Notify the adapter that the data has changed
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+                            Log.w("TAG", "Failed to read value.", databaseError.toException());
+                        }
+                    });
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    Log.w("TAG", "Failed to read value.", databaseError.toException());
+                }
+            });
+
+        }
 
         //Goto profile
         ImageButton btnuserProfile = findViewById(R.id.profileButton);
@@ -69,6 +151,7 @@ public class SearchByLocationActivity extends AppCompatActivity implements
                 finish();
             }
         });
+
 
 
         // Kiểm tra quyền truy cập vị trí
@@ -128,7 +211,7 @@ public class SearchByLocationActivity extends AppCompatActivity implements
                 Address address = addresses.get(0);
                 String state = address.getAdminArea();
                 String country = address.getCountryName();
-                String addressText = state + ", " + country;
+                String addressText = "Khu vực của bạn: " + state + ", " + country;
                 locationTextView.setText(addressText);
             }
         } catch (IOException e) {
