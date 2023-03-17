@@ -89,7 +89,11 @@ public class DetailActivityBlogs extends AppCompatActivity {
                 Integer currentLikes = dataSnapshot.getValue(Integer.class);
 
                 // Cập nhật giá trị mới cho lượt thích (like)
-                likecount.setText(String.valueOf(currentLikes)+" Like ");
+                if(currentLikes<0) {
+                    Toast.makeText(DetailActivityBlogs.this, "Like Not < 0", Toast.LENGTH_SHORT).show();
+                }else {
+                    likecount.setText(String.valueOf(currentLikes)+" Like ");
+                }
 //
             }
 
@@ -123,7 +127,13 @@ public class DetailActivityBlogs extends AppCompatActivity {
 
                         // Cập nhật giá trị mới cho lượt thích
                         myRef.child("like").setValue(currentLikes + 1);
-                        likecount.setText(String.valueOf(currentLikes + 1 +" Like"));
+                        if (currentLikes+1<0){
+                            Toast.makeText(DetailActivityBlogs.this, "Fail!", Toast.LENGTH_SHORT).show();
+                        }else {
+                            likecount.setText(String.valueOf(currentLikes + 1 +" Like"));
+
+                        }
+
 
                         Toast.makeText(DetailActivityBlogs.this, "Liked", Toast.LENGTH_SHORT).show();
                         likeButton.setEnabled(false);
@@ -160,10 +170,15 @@ public class DetailActivityBlogs extends AppCompatActivity {
                     public void onDataChange(DataSnapshot dataSnapshot) {
                         // Lấy giá trị hiện tại của lượt thích (like)
                         Integer currentLikes = dataSnapshot.getValue(Integer.class);
+                        if (currentLikes - 1<0){
+                            Toast.makeText(DetailActivityBlogs.this, "Like Not < 0", Toast.LENGTH_SHORT).show();
+                        }else {
+                            myRef.child("like").setValue(currentLikes - 1);
+                            likecount.setText(String.valueOf(currentLikes - 1)+" Like");
+                        }
 
                         // Cập nhật giá trị mới cho lượt thích (like)
-                        myRef.child("like").setValue(currentLikes - 1);
-                        likecount.setText(String.valueOf(currentLikes - 1)+" Like");
+
 
                         Toast.makeText(DetailActivityBlogs.this, "UnLiked", Toast.LENGTH_SHORT).show();
                         dislikebutton.setEnabled(false);

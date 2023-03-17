@@ -26,6 +26,8 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class MainMenu extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     private DrawerLayout drawerLayout;
+    String url_1 ="https://iamafoodblog.com/al-pastor/";
+    String url_2="https://chat.theb.ai/?fbclid=IwAR23saGL-Zo-HGW1ITIuleNze5ExrllhgvK0-oGKzI58nDWmrsmOzkggGi8#/chat/1679028909117";
     WebView webView;
     TextView emailmenutv;
     @Override
@@ -50,7 +52,7 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
         // web view
         webView= findViewById(R.id.webview);
         webView.setWebViewClient(new WebViewClient());
-        webView.loadUrl("https://iamafoodblog.com/al-pastor/");
+        webView.loadUrl(url_1);
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
 
