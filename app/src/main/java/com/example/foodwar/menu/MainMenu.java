@@ -61,15 +61,6 @@ public class MainMenu extends AppCompatActivity implements NavigationView.OnNavi
         //
     }
 
-//    @Override
-//    public void onBackPressed(){
-//        if (webView.canGoBack()){
-//            webView.goBack();
-//        }else {
-//            super.onBackPressed();
-//        }
-//
-//    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.nav_menu, menu);

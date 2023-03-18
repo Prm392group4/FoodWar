@@ -64,6 +64,7 @@ public class MainupBlogsItems extends AppCompatActivity {
                             uploadImage.setImageURI(uri);
                         } else {
                             Toast.makeText(MainupBlogsItems.this, "No Image Selected", Toast.LENGTH_SHORT).show();
+
                         }
                     }
                 }
