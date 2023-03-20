@@ -30,6 +30,7 @@ import com.denzcoskun.imageslider.models.SlideModel;
 import com.example.foodwar.R;
 import com.example.foodwar.blogs_management.MainActivityBlogs;
 import com.example.foodwar.blogs_management.MainupBlogsItems;
+import com.example.foodwar.food_management.DetailFood;
 import com.example.foodwar.food_management.Food;
 import com.example.foodwar.food_management.Restaurant;
 import com.example.foodwar.menu.MainMenu;
@@ -150,17 +151,16 @@ public class HomeActivity extends AppCompatActivity implements LocationListener 
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Food food = (Food) parent.getItemAtPosition(position);
-                Intent intent = new Intent(HomeActivity.this, HomeFoodDetail.class);
-                intent.putExtra("name", food.getName());
-                intent.putExtra("image", food.getImage());
-                intent.putExtra("description",food.getDescription());
-                intent.putExtra("category",food.getCategory());
-                intent.putExtra("price",food.getPrice());
-                intent.putExtra("restaurant",food.getRestaurant());
+                Intent intent = new Intent(HomeActivity.this, DetailFood .class);
+                intent.putExtra("1name", food.getName());
+                intent.putExtra("1image", food.getImage());
+                intent.putExtra("1description",food.getDescription());
+                intent.putExtra("1category",food.getCategory());
+                intent.putExtra("1price",food.getPrice());
+                intent.putExtra("1restaurant",food.getRestaurant());
                 startActivity(intent);
             }
         });
-
 
         imageSlider = findViewById(R.id.home_imgslideshow);
         ArrayList<SlideModel> slideModels = new ArrayList<>();

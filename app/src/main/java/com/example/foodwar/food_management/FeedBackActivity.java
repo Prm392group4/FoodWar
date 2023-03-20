@@ -55,16 +55,14 @@ public class FeedBackActivity extends AppCompatActivity {
     }
 
     private void pushData() {
-        // Write a message to the database
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference();
         String content = feedBack.getText().toString();
         float ratingStar = rateBar.getRating();
 
-        // Create FeedbackModel object
         FeedBack feedback = new FeedBack(content, ratingStar);
 
-        if (!feedBack.getText().toString().isEmpty()||!rateBar.toString().isEmpty()) {
+        if (!feedBack.getText().toString().isEmpty()||rateBar.getRating()>0) {
             myRef.child("FeedBack").push().setValue(feedback)
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
@@ -95,7 +93,7 @@ public class FeedBackActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
-                String value = dataSnapshot.getValue(String.class);
+                FeedBack feedBack = dataSnapshot.getValue(FeedBack.class);
             }
 
             @Override

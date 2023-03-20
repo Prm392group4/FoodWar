@@ -42,10 +42,10 @@ public class FoodAdapterDetail extends RecyclerView.Adapter<FoodAdapterDetail.Fo
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, DetailFood.class);
-                intent.putExtra("Description", listFood.get(holder.getAdapterPosition()).getDescription());
-                intent.putExtra("Name", listFood.get(holder.getAdapterPosition()).getName());
-                intent.putExtra("Price",listFood.get(holder.getAdapterPosition()).getPrice());
-                intent.putExtra("Image", listFood.get(holder.getAdapterPosition()).getImage());
+                intent.putExtra("1description", listFood.get(holder.getAdapterPosition()).getDescription());
+                intent.putExtra("1name", listFood.get(holder.getAdapterPosition()).getName());
+                intent.putExtra("1price",listFood.get(holder.getAdapterPosition()).getPrice());
+                intent.putExtra("1image", listFood.get(holder.getAdapterPosition()).getImage());
                 context.startActivity(intent);
             }
         });

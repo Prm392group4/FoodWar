@@ -81,11 +81,11 @@ public class RestaurantActivity extends AppCompatActivity {
     //get restaurant information
     private void getResFromRealTimeDatabase() {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference foods_ref = database.getReference("restaurants/1");
+        DatabaseReference foods_ref = database.getReference("restaurants/3");
         foods_ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    Restaurant restaurant = snapshot.getValue(Restaurant.class);
+                Restaurant restaurant = snapshot.getValue(Restaurant.class);
                 textView_address.setText(restaurant.getAddress());
                 textView_restaurant.setText(restaurant.getName());
                 textView_phone.setText(restaurant.getPhone());
@@ -101,7 +101,7 @@ public class RestaurantActivity extends AppCompatActivity {
     //get foods data from firebase
     private void getListFoodFromRealTimeDatabase(){
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference foods_ref  = database.getReference("restaurants/1/foods");
+        DatabaseReference foods_ref  = database.getReference("foods");
         foods_ref.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -130,3 +130,4 @@ public class RestaurantActivity extends AppCompatActivity {
         textView_phone = findViewById(R.id.textview_phone);
     }
 }
+
