@@ -61,9 +61,10 @@
 
     <TextView
         android:id="@+id/detailDesc"
-        android:layout_width="286dp"
-        android:layout_height="106dp"
+        android:layout_width="400dp"
+        android:layout_height="114dp"
         android:layout_gravity="center"
+        android:background="@drawable/main_boder_hightlight"
         android:padding="10dp"
         android:text="Description"
         android:textColor="@color/main"
@@ -75,6 +76,20 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.741"
         tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="19dp"
+        android:text="Được đăng bởi:"
+        android:textColor="@color/btnred"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toTopOf="@+id/publisher"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.601"
+        app:layout_constraintStart_toEndOf="@+id/textViewlike"
+        app:layout_constraintTop_toBottomOf="@+id/detailImage"
+        app:layout_constraintVertical_bias="1.0" />
 
     <Button
         android:id="@+id/buttonUnLike"

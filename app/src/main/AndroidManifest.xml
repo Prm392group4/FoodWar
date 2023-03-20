@@ -71,6 +71,10 @@
         </activity>
         <activity android:name=".menu.SettingsFragment"></activity>
         <activity android:name=".menu.HomeFragment"></activity>
+        <activity android:name=".admin_activity.EditUserActivity"></activity>
+        <activity android:name=".admin_activity.FoodActivity"></activity>
+        <activity android:name=".admin_activity.StoreActivity"></activity>
+        <activity android:name=".admin_activity.UserActivity"></activity>
         <activity android:name=".menu.ShareFragment"></activity>
         <activity android:name=".menu.AboutFragment"></activity>
         <activity android:name=".blogs_management.MainupBlogsItems"></activity>
