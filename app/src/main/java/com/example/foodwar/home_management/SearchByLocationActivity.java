@@ -63,12 +63,12 @@ public class SearchByLocationActivity extends AppCompatActivity implements
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Food food = (Food) parent.getItemAtPosition(position);
                 Intent intent = new Intent(SearchByLocationActivity.this, HomeFoodDetail.class);
-                intent.putExtra("name", food.getName());
-                intent.putExtra("image", food.getImage());
-                intent.putExtra("description",food.getDescription());
-                intent.putExtra("category",food.getCategory());
-                intent.putExtra("price",food.getPrice());
-                intent.putExtra("restaurant",food.getRestaurant());
+                intent.putExtra("1name", food.getName());
+                intent.putExtra("1image", food.getImage());
+                intent.putExtra("1description",food.getDescription());
+                intent.putExtra("1category",food.getCategory());
+                intent.putExtra("1price",food.getPrice());
+                intent.putExtra("1restaurant",food.getRestaurant());
                 startActivity(intent);
             }
         });
